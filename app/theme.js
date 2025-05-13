@@ -18,21 +18,27 @@ const theme = createTheme({
     fontFamily: 'var(--font-noto), sans-serif',
     h1: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
     h2: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
     h3: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
     h4: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
     h5: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
     h6: {
       fontFamily: 'var(--font-quantico), sans-serif',
+      fontWeight: '700',
     },
   }
 });

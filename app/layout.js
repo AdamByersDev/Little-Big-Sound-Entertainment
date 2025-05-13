@@ -12,6 +12,7 @@ export const metadata = {
 const quantico = Quantico({
   weight: ['400', '700'],
   subsets: ['latin'],
+  style: 'italic',
   display: 'swap',
   variable: '--font-quantico', 
 });
