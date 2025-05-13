@@ -6,7 +6,7 @@ import theme from "./theme";
 
 export const metadata = {
   title: "Little Big Sound Entertainment",
-  description: "The official website for Little Big Sound Entertainment",
+  description: "Expert DJ entertainment for unforgettable events. Mixing beats, creating moments!",
 };
 
 const quantico = Quantico({
