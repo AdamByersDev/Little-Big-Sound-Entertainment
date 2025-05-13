@@ -7,9 +7,11 @@ const theme = createTheme({
     mode: 'dark',
     primary: {
       main: '#5271ff',
+      contrastText: '#000',
     },
     secondary: {
       main: '#df52ff',
+      contrastText: '#000',
     }
   },
   typography: {
