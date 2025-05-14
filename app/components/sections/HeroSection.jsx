@@ -5,19 +5,31 @@ export default function HeroSection() {
   return (
     <Container
       sx={{
-        backgroundColor: 'grey.A700',
+        background: 'linear-gradient(145deg,rgba(115, 58, 128, 1) 0%, rgba(78, 29, 89, 1) 100%)',
         aspectRatio: {md: '16/9'},
-        height: {xs: '80vh', md: 'auto'},
+        height: 'auto',
         display: 'flex',
         alignItems: 'end',
-        backgroundImage: 'url("/hero.webp")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        paddingTop: {xs: '72px', md: '8px'},
+        position: 'relative',
       }}
       component='section'
       id="hero"
       maxWidth='xl'
     >
+      <Box sx={{
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundImage: 'url("/hero.webp")',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        zIndex: '0',
+        opacity: '0.5',
+        filter: 'grayscale(100%) brightness(50%)',
+      }} />
       <Container
         maxWidth='lg'
         sx={{
@@ -29,19 +41,32 @@ export default function HeroSection() {
           alignItems: 'center',
           paddingBottom: {xs: '12vh', md: '10%'},
           gap: '8px',
+          zIndex: '1',
         }}
       >
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'start',
+          alignItems: 'center',
           height: {md: '100%'},
           paddingBottom: {md: '20%'},
-          position: 'relative'
+          position: 'relative',
         }}>
           <Image
-            src='/logo.svg'
-            width={500}
+            src='/logo-no-text.svg'
+            width={0}
+            height={0}
+            alt="Little Big Sound Entertainment"
+            style={{
+              height: 'auto',
+              width: '75%',
+              maxWidth: '800px'
+            }}
+          />
+          <Image
+            src='/logo-text-only.svg'
+            width={0}
             height={0}
             alt="Little Big Sound Entertainment"
             style={{
@@ -84,8 +109,8 @@ export default function HeroSection() {
             <br />
             Mixing beats, creating moments!
           </Typography>
-          <Button color='secondary' variant='contained'>
-            View our plans
+          <Button color='primary' variant='contained'>
+            Let's Get Started
           </Button>
         </Box>
       </Container>
