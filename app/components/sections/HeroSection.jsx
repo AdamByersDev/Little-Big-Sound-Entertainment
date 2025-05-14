@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <Container
       sx={{
-        background: 'linear-gradient(145deg,rgba(115, 58, 128, 1) 0%, rgba(78, 29, 89, 1) 100%)',
+        background: 'linear-gradient(145deg,rgba(78, 29, 89, 1) 0%, rgba(39, 15, 45, 1) 100%)',
         aspectRatio: {md: '16/9'},
         height: 'auto',
         display: 'flex',
