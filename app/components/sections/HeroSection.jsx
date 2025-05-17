@@ -57,7 +57,7 @@ export default function HeroSection() {
             src='/logo-no-text.svg'
             width={0}
             height={0}
-            alt="Little Big Sound Entertainment"
+            alt=""
             style={{
               height: 'auto',
               width: '75%',
@@ -68,7 +68,7 @@ export default function HeroSection() {
             src='/logo-text-only.svg'
             width={0}
             height={0}
-            alt="Little Big Sound Entertainment"
+            alt=""
             style={{
               height: 'auto',
               width: '100%',
