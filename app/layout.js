@@ -1,5 +1,5 @@
 import { Quantico, Noto_Sans_NKo_Unjoined } from "next/font/google";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import theme from "./theme";
@@ -30,6 +30,13 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <GlobalStyles
+              styles={{
+                html: {
+                  scrollBehavior: 'smooth'
+                }
+              }}
+            />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>

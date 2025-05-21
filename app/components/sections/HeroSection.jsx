@@ -109,7 +109,7 @@ export default function HeroSection() {
             <br />
             Mixing beats, creating moments!
           </Typography>
-          <Button color='primary' variant='contained'>
+          <Button color='primary' variant='contained' href="#plans">
             Let's Get Started
           </Button>
         </Box>

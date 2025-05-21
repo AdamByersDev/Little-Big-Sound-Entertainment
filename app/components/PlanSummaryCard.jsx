@@ -2,7 +2,7 @@ import { Button, Card, CardContent, CardActions, Typography, Box } from "@mui/ma
 import ArrowForwardIcon from "./icons/ArrowForwardIcon";
 import { alpha } from '@mui/material/styles';
 
-export default function PlanSummaryCard({ name, summary, prefered }) {
+export default function PlanSummaryCard({ id, name, summary, prefered }) {
   return(
     <Card
       sx={{
@@ -60,6 +60,7 @@ export default function PlanSummaryCard({ name, summary, prefered }) {
           variant={prefered == 1? 'contained' : 'outlined'}
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
+          href={`/plans#${id}`}
         >
           Learn More
           <ArrowForwardIcon />

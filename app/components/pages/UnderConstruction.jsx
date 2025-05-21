@@ -30,7 +30,7 @@ export default function UnderConstruction() {
         }}
       />
       <Typography variant="body1">
-        Sorry, our website is currently under construction. Come back soon!
+        Sorry, this part of our website is currently under construction. Come back soon!
       </Typography>
       <Box sx={{
         gap: '4px',
@@ -39,14 +39,8 @@ export default function UnderConstruction() {
         justifyContent: 'center',
         flexDirection: {xs: 'column', sm: 'row'}
       }}>
-        <Button color="primary" variant="contained" component={Link} href="https://www.facebook.com/people/Little-Big-Sound-Entertainment/100067206510756/" sx={{gap: '4px'}}>
-          <FacebookIcon />
-          <Typography variant="button">Visit our Facebook</Typography>
-        </Button>
-        <Typography variant="button">OR</Typography>
-        <Button color="secondary" variant="contained" component={Link} href="https://www.instagram.com/littlebigsoundentertainment/" sx={{gap: '4px'}}>
-          <InstagramIcon />
-          <Typography variant="button">Visit our Instagram</Typography>
+        <Button color="primary" variant="contained" component={Link} href="/" sx={{gap: '4px'}}>
+          <Typography variant="button">Return to the home page</Typography>
         </Button>
       </Box>
     </Container>
