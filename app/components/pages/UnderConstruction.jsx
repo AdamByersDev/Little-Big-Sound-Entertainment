@@ -39,7 +39,13 @@ export default function UnderConstruction() {
         justifyContent: 'center',
         flexDirection: {xs: 'column', sm: 'row'}
       }}>
-        <Button color="primary" variant="contained" component={Link} href="/" sx={{gap: '4px'}}>
+        <Button
+          color="primary"
+          variant="contained" 
+          component={Link} 
+          href="/" 
+          sx={{gap: '4px'}}
+        >
           <Typography variant="button">Return to the home page</Typography>
         </Button>
       </Box>
