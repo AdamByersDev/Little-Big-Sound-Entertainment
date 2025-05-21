@@ -8,22 +8,36 @@ export default function PlanSummaryCard({ name, summary, prefered }) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        position: 'relative',
         height: '100%',
         outline: prefered > 0? '2px solid' : 'none',
-        outlineColor: prefered == 2? 'secondary.main' : 'primary.main',
-        backgroundColor: prefered > 0 ? 'action.hover' : 'background.paper',
+        outlineColor: prefered == 2? 'secondary.dark' : 'primary.main',
+        backgroundColor: prefered > 0 ? 'grey.900' : 'background.paper',
         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: 6,
         }
       }}
-      
       component='article'
     >
+      {prefered == 1 && (
+        <Box
+          sx={{
+            position: 'absolute',
+            backgroundImage: 'linear-gradient(135deg, var(--mui-palette-secondary-light), var(--mui-palette-primary-dark))',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            opacity: 0.3
+          }}
+        />
+      )}
       <CardContent
         sx={{
-          flexGrow: 1
+          flexGrow: 1,
+          zIndex: 1
         }}
       >
         <Box>
@@ -35,7 +49,7 @@ export default function PlanSummaryCard({ name, summary, prefered }) {
           height: (prefered > 0? 4 : 2),
           borderRadius: 2,
           width: '100%',
-          backgroundColor: prefered == 2 ? 'secondary.main' : prefered == 1 ? 'primary.main' : 'primary.dark',
+          backgroundColor: prefered == 2 ? 'secondary.dark' : prefered == 1 ? 'primary.main' : 'primary.dark',
         }} />
         <Typography variant='body2' sx={{ mt: 1, color: 'text.secondary' }}>
           {summary}
@@ -43,7 +57,7 @@ export default function PlanSummaryCard({ name, summary, prefered }) {
       </CardContent>
       <CardActions>
         <Button
-          variant={prefered > 0? 'contained' : 'outlined'}
+          variant={prefered == 1? 'contained' : 'outlined'}
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
         >

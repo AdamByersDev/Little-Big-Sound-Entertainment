@@ -1,4 +1,4 @@
-import { Card, CardContent, Container, Grid } from "@mui/material";
+import { Card, CardContent, Container, Grid, Box } from "@mui/material";
 import { headers } from 'next/headers';
 import PlanSummaryCard from "../PlanSummaryCard";
 
@@ -77,19 +77,21 @@ export default async function PlansSection() {
       id="plans"
       maxWidth='xl'
       sx={{
-        backgroundColor: 'background.paper'
+        backgroundColor: 'background.paper',
+        position: 'relative',
       }}
     >
       <Grid
         container
         spacing={4}
         padding={4}
+        maxWidth='lg'
         sx={{
-          alignItems: "stretch"
+          marginX: 'auto'
         }}
       >
         {data.plans.map(((plan, index) => (
-          <Grid key={index} size={getCardSizes(data.plans.length, index)}>
+          <Grid key={index} size={getCardSizes(data.plans.length, index)} zIndex={1}>
             <PlanSummaryCard id={plan.id} name={plan.name} summary={plan.summary} prefered={plan.prefered}/>
           </Grid>
         )))}
