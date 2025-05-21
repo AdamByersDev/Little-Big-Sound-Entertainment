@@ -28,7 +28,7 @@ export default function HeroSection() {
         backgroundSize: 'cover',
         zIndex: '0',
         opacity: '0.5',
-        filter: 'grayscale(100%) brightness(50%)',
+        filter: 'grayscale(100%) brightness(30%)',
       }} />
       <Container
         maxWidth='lg'
