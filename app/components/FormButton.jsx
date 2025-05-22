@@ -9,7 +9,7 @@ export default function FormButton(props) {
       loading={pending}
       {...props}
     >
-      ${props.children}
+      {props.children}
     </Button>
   )
 }
