@@ -1,5 +1,6 @@
-import HeroSection from "./components/sections/HeroSection";
-import PlansSection from "./components/sections/PlansSection";
+import ContactSection from "./sections/ContactSection";
+import HeroSection from "./sections/HeroSection";
+import PlansSection from "./sections/PlansSection";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <PlansSection />
+        <ContactSection />
       </main>
     </>
   );

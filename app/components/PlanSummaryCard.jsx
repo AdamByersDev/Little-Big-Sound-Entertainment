@@ -1,6 +1,5 @@
 import { Button, Card, CardContent, CardActions, Typography, Box } from "@mui/material";
 import ArrowForwardIcon from "./icons/ArrowForwardIcon";
-import { alpha } from '@mui/material/styles';
 import Link from "next/link";
 
 export default function PlanSummaryCard({ id, name, summary, prefered }) {
