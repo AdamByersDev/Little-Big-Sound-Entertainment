@@ -1,7 +1,72 @@
-import { Button, Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
+import { Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "../components/PhoneInput";
 import { getPlans } from "../api";
+import nodemailer from 'nodemailer';
+import FormButton from "../components/FormButton";
+
+async function sendEmail(formData) {
+  'use server';
+
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const phone = formData.get('phone');
+  const plan = formData.get('plan');
+  const info = formData.get('info');
+  const toSender = formData.get('to-sender');
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.purelymail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  const mailBody = `
+    <h1>Contact Form Submission</h1>
+    <h2>Sent by ${name}</h2>
+    <p>
+      Supplied contact info:<br />
+      <ul>
+        <li>Email: <a href='mailto:${email}'>${email}</a></li>
+        <li>Phone: ${phone? `<a href='tel:${phone}'>${phone}</a>` : 'Not provided'}</li>
+      </ul>
+    </p>
+    <p>Chosen plan: ${plan}</p>
+    ${info && (`
+      <p>Additional info:<br />
+      ${info}</p>
+    `)}
+  `;
+
+  const adminMail = {
+    from: `"No Reply" <${process.env.EMAIL_USER}>`,
+    to: 'info@littlebigsoundentertainment.ca',
+    replyTo: email,
+    subject: `${name} - Contact Form`,
+    html: mailBody
+  };
+
+  await transporter.sendMail(adminMail);
+
+  if (toSender == 'on') {
+    const userMail = {
+      from: `"No Reply" <${process.env.EMAIL_USER}>`,
+      to: email,
+      replyTo: 'info@littlebigsoundentertainment.ca',
+      subject: `Contact Form Submission - Little Big Sound Entertainment`,
+      html: mailBody
+    };
+
+    await transporter.sendMail(userMail);
+  }
+
+
+  console.log(`${name}, ${email}, ${phone}, ${plan}, ${info}, ${toSender}`);
+}
 
 export default async function ContactSection() {
   const data = await getPlans();
@@ -18,6 +83,7 @@ export default async function ContactSection() {
       <Grid
         container
         component={Form}
+        action={sendEmail}
         spacing={4}
         padding={4}
         maxWidth='lg'
@@ -97,13 +163,13 @@ export default async function ContactSection() {
           <FormControlLabel control={<Checkbox defaultChecked name="to-sender" />} label='Send a copy to yourself' />
         </Grid>
         <Grid size={{xs: 12, sm: 6}}>
-          <Button
+          <FormButton
             variant="contained"
             fullWidth
             type='submit'
           >
             Send your email
-          </Button>
+          </FormButton>
         </Grid>
       </Grid>
     </Container>
