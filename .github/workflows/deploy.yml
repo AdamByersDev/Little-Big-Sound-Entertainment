@@ -25,6 +25,10 @@ jobs:
       if: github.ref == 'refs/heads/main'
       run: |
         ssh -p 2222 abyers@abyers.ca << 'EOF'
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 22
+
           cd ~/websites/little-big-sound-entertainment/main
           git pull origin main
           npm install
@@ -38,6 +42,10 @@ jobs:
       if: github.ref_name == env.DEV_BRANCH
       run: |
         ssh -p 2222 abyers@abyers.ca << EOF
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 22
+
           cd ~/websites/little-big-sound-entertainment/dev
           git fetch origin
           git checkout $DEV_BRANCH
