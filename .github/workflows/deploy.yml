@@ -19,12 +19,12 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
         chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan abyers.ca >> ~/.ssh/known_hosts
+        ssh-keyscan -p 2222 abyers.ca >> ~/.ssh/known_hosts
 
     - name: Deploy to prod
       if: github.ref == 'refs/heads/main'
       run: |
-        ssh abyers@abyers.ca << 'EOF'
+        ssh -p 2222 abyers@abyers.ca << 'EOF'
           cd ~/websites/little-big-sound-entertainment/main
           git pull origin main
           npm install
@@ -37,7 +37,7 @@ jobs:
         DEV_BRANCH: ${{ secrets.DEV_BRANCH }}
       if: github.ref_name == env.DEV_BRANCH
       run: |
-        ssh abyers@abyers.ca << EOF
+        ssh -p 2222 abyers@abyers.ca << EOF
           cd ~/websites/little-big-sound-entertainment/dev
           git fetch origin
           git checkout $DEV_BRANCH
