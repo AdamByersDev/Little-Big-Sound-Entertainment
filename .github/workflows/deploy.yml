@@ -26,7 +26,7 @@ jobs:
       run: |
         ssh -p 2222 abyers@abyers.ca << 'EOF'
           export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          source "$NVM_DIR/nvm.sh"
           nvm use 22
 
           cd ~/websites/little-big-sound-entertainment/main
@@ -43,7 +43,7 @@ jobs:
       run: |
         ssh -p 2222 abyers@abyers.ca << EOF
           export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          source "$NVM_DIR/nvm.sh"
           nvm use 22
 
           cd ~/websites/little-big-sound-entertainment/dev
