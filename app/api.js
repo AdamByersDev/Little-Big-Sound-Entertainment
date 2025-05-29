@@ -1,4 +1,5 @@
 export async function getPlans() {
+  'use server';
   return {
     plans: [
       {

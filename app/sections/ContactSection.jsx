@@ -44,7 +44,7 @@ async function sendEmail(formData) {
 
   const adminMail = {
     from: `"No Reply" <${process.env.EMAIL_USER}>`,
-    to: 'info@littlebigsoundentertainment.ca',
+    to: process.env.EMAIL_TO,
     replyTo: email,
     subject: `${name} - Contact Form`,
     html: mailBody
