@@ -1,7 +1,6 @@
 import { Quantico, Noto_Sans_NKo_Unjoined } from "next/font/google";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import theme from "./theme";
 
 export const metadata = {
@@ -40,7 +39,6 @@ export default function RootLayout({ children }) {
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
