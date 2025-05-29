@@ -31,7 +31,7 @@ jobs:
 
           cd ~/websites/little-big-sound-entertainment/main
           git pull origin main
-          npm install
+          npm install && npm prune
           npm run build
           pm2 restart lbse-prod || pm2 start npm --name "lbse-prod" -- start -- --port=52737
         EOF
@@ -50,7 +50,7 @@ jobs:
           git fetch origin
           git checkout $DEV_BRANCH
           git pull origin $DEV_BRANCH
-          npm install
+          npm install && npm prune
           npm run build
           pm2 restart lbse-dev || pm2 start npm --name "lbse-dev" -- start -- --port=52733
         EOF
