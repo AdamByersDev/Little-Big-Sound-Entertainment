@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import theme from "./theme";
 
 export const metadata = {
+  metadataBase: new URL('https://littlebigsoundentertainment.ca/'),
   title: "Little Big Sound Entertainment",
   description: "Expert DJ entertainment for unforgettable events. Mixing beats, creating moments!",
 };
