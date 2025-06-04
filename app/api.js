@@ -7,7 +7,7 @@ export async function getPlans() {
   const [plans] = await conn.execute('SELECT * FROM availablepackages');
   await conn.end();
 
-  console.log(plans);
+  console.log(`Pulled ${plans.length} un-hidden packages from the database.`);
 
   return {
     plans: plans,
