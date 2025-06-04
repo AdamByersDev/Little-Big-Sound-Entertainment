@@ -51,7 +51,7 @@ export default async function PlansSection() {
       >
         <Grid size={12} zIndex={1}>
           <Typography variant="h4" component='h2'>
-            Our Plans
+            Our Packages
           </Typography>
         </Grid>
         {data.plans.map(((plan, index) => (

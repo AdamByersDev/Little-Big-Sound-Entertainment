@@ -17,6 +17,7 @@
     "@mui/material": "^7.1.0",
     "@mui/material-nextjs": "^7.1.0",
     "@react-input/mask": "^2.0.4",
+    "mysql2": "^3.14.1",
     "next": "15.3.2",
     "nodemailer": "^7.0.3",
     "react": "^19.0.0",
