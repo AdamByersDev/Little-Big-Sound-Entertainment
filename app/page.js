@@ -1,3 +1,4 @@
+import Footer from "./components/sharedSections/footer";
 import ContactSection from "./sections/ContactSection";
 import HeroSection from "./sections/HeroSection";
 import PlansSection from "./sections/PlansSection";
@@ -11,6 +12,7 @@ export default function Home() {
         <HeroSection />
         <PlansSection />
         <ContactSection />
+        <Footer />
       </main>
     </>
   );
