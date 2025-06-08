@@ -61,7 +61,8 @@ export default function HeroSection() {
             style={{
               height: 'auto',
               width: '75%',
-              maxWidth: '800px'
+              maxWidth: '800px',
+              aspectRatio: '808/561'
             }}
           />
           <Image
@@ -72,7 +73,8 @@ export default function HeroSection() {
             style={{
               height: 'auto',
               width: '100%',
-              maxWidth: '800px'
+              maxWidth: '800px',
+              aspectRatio: '159/20'
             }}
           />
           <Typography
