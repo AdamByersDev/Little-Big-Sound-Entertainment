@@ -5,8 +5,24 @@ import theme from "./theme";
 
 export const metadata = {
   metadataBase: new URL('https://littlebigsoundentertainment.ca/'),
-  title: "Little Big Sound Entertainment",
-  description: "Expert DJ entertainment for unforgettable events. Mixing beats, creating moments!",
+  title: {
+    default: 'Little Big Sound Entertainment',
+    template: '%s - Little Big Sound Entertainment',
+  },
+  description: 'Expert DJ entertainment for unforgettable events. Mixing beats, creating moments!',
+  other: {
+    'application/ld+json': JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Little Big Sound Entertainment",
+      "url": "https://littlebigsoundentertainment.ca",
+      "logo": "https://littlebigsoundentertainment.ca/apple-icon.png",
+      "sameAs": [
+        "https://www.facebook.com/people/Little-Big-Sound-Entertainment/100067206510756/",
+        "https://www.instagram.com/littlebigsoundentertainment/"
+      ]
+    }),
+  },
 };
 
 const quantico = Quantico({
