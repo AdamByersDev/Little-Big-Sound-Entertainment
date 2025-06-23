@@ -96,20 +96,31 @@ export default function Footer() {
           </Box>
         </Box>
         <Divider orientation='horizontal' flexItem sx={{ borderColor: 'text.secondary'}}/>
-        <Typography textAlign={'center'} variant="body2">
-          &copy; 2025 Little Big Sound Entertainment<br />
-          All Rights Reserved
-        </Typography>
-        <Link
-          component={NextLink}
-          href='/'
-          underline='none'
-          color='textSecondary'
-          height={64}
-          aria-label="Go to ABD Page"
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            flexDirection: { xs: 'column', sm: 'row' }
+          }}
+          maxWidth='md'
         >
-          <ABDLogo />
-        </Link>
+          <Typography textAlign={'center'} variant="body2">
+            &copy; 2025 Little Big Sound Entertainment<br />
+            All Rights Reserved
+          </Typography>
+          <Link
+            component={NextLink}
+            href='/'
+            underline='none'
+            color='textSecondary'
+            height={64}
+            aria-label="Go to ABD Page"
+          >
+            <ABDLogo />
+          </Link>
+        </Box>
       </Container>
     </Container>
   )

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Box } from '@mui/material';
-import { Height } from '@mui/icons-material';
 import Image from 'next/image';
 
 export default function ABDLogo() {
