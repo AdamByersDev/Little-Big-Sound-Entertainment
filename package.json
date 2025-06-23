@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@lottiefiles/dotlottie-react": "^0.14.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.2"
   }

@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import Image from "next/image";
 import FacebookIcon from "../icons/FacebookIcon";
 import InstagramIcon from "../icons/InstagramIcon";
-import { BorderColor } from "@mui/icons-material";
+import ABDLogo from "../icons/ABDLogo";
 
 export default function Footer() {
   return (
@@ -23,7 +23,7 @@ export default function Footer() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          paddingY: 4,
+          paddingTop: 4,
           gap: '8px',
         }}
       >
@@ -100,9 +100,16 @@ export default function Footer() {
           &copy; 2025 Little Big Sound Entertainment<br />
           All Rights Reserved
         </Typography>
-        <Typography textAlign={'center'} variant="body2">
-          Developed by ABD - Adam Byers Development
-        </Typography>
+        <Link
+          component={NextLink}
+          href='/'
+          underline='none'
+          color='textSecondary'
+          height={64}
+          aria-label="Go to ABD Page"
+        >
+          <ABDLogo />
+        </Link>
       </Container>
     </Container>
   )
