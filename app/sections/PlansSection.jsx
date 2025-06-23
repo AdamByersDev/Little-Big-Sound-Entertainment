@@ -1,7 +1,7 @@
 import { Card, CardContent, Container, Grid, Box, Typography } from "@mui/material";
 import { headers } from 'next/headers';
 import PlanSummaryCard from "../components/PlanSummaryCard";
-import { getPlans } from "../api";
+import { getPackages } from "../api";
 
 function getCardSizes(length, index) {
   let xs = 12;
@@ -29,7 +29,7 @@ function getCardSizes(length, index) {
 }
 
 export default async function PlansSection() {
-  const data = await getPlans();
+  const data = await getPackages();
   return(
     <Container
       component='section'

@@ -2,7 +2,7 @@
 
 import { getConnection } from "@/lib/db";
 
-export async function getPlans() {
+export async function getPackages() {
   const conn = await getConnection();
   const [plans] = await conn.execute('SELECT * FROM availablepackages');
   await conn.end();

@@ -1,7 +1,7 @@
 import { Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "../components/PhoneInput";
-import { getPlans } from "../api";
+import { getPackages } from "../api";
 import nodemailer from 'nodemailer';
 import FormButton from "../components/FormButton";
 
@@ -69,7 +69,7 @@ async function sendEmail(formData) {
 }
 
 export default async function ContactSection() {
-  const data = await getPlans();
+  const data = await getPackages();
   return (
     <Container
       component='section'
