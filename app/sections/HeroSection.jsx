@@ -40,6 +40,7 @@ export default function HeroSection() {
           justifyContent: 'end',
           alignItems: 'center',
           paddingBottom: {xs: '12vh', md: '10%'},
+          paddingTop: '64px',
           gap: '8px',
           zIndex: '1',
         }}
