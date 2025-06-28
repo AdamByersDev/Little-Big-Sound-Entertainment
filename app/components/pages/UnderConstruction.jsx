@@ -1,6 +1,4 @@
 import { Container, Typography, Box, Button } from "@mui/material";
-import FacebookIcon from "../icons/FacebookIcon";
-import InstagramIcon from "../icons/InstagramIcon";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -112,7 +112,7 @@ export default function Footer() {
           </Typography>
           <Link
             component={NextLink}
-            href='/'
+            href='https://github.com/AdamByersDev'
             underline='none'
             color='textSecondary'
             height={64}

@@ -36,10 +36,10 @@ export default function ABDLogo() {
         height={'100%'}
         role='img'
         aria-label='ABD logo'
-        sx={{ display: { xs: 'none', md: 'block' }, height: { xs: 0, md: '100%'} }}
+        sx={{ display: { xs: 'none', md: 'flex' }, height: { xs: 0, md: '100%'} }}
       />
       <Box
-        sx={{ display: { xs: 'block', md: 'none'} }}
+        sx={{ display: { xs: 'flex', md: 'none'} }}
       >
         <Image
           src={'/abd-name.svg'}
