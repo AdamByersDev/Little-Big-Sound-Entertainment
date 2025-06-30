@@ -10,6 +10,10 @@ export const metadata = {
     template: '%s - Little Big Sound Entertainment',
   },
   description: 'Expert DJ entertainment for unforgettable events. Mixing beats, creating moments!',
+  keywords: [
+    'DJ', 'wedding DJ', 'event entertainment', 'Ontario DJ',
+    'Little Big Sound', 'party music', 'live DJ', 'event music services'
+  ],
   other: {
     'application/ld+json': JSON.stringify({
       "@context": "https://schema.org",
