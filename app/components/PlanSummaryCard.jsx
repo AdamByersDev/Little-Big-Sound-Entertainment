@@ -62,6 +62,7 @@ export default function PlanSummaryCard({ id, name, summary, prefered }) {
           fullWidth
           component={Link}
           href={`/plans#${id}`}
+          aria-label={`Learn more about the ${name}`}
         >
           Learn More
           <ArrowForwardIcon />
