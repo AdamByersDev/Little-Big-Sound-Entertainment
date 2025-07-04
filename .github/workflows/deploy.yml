@@ -25,6 +25,8 @@ jobs:
       if: github.ref == 'refs/heads/main'
       run: |
         ssh -p 2222 abyers@abyers.ca << 'EOF'
+          set -e 
+
           export NVM_DIR="/home/abyers/.nvm"
           source "$NVM_DIR/nvm.sh"
           nvm use 22
@@ -42,6 +44,8 @@ jobs:
       if: github.ref_name == env.DEV_BRANCH
       run: |
         ssh -p 2222 abyers@abyers.ca << 'EOF'
+          set -e
+
           export NVM_DIR="/home/abyers/.nvm"
           source "$NVM_DIR/nvm.sh"
           nvm use 22
