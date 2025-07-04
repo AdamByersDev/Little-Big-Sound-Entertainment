@@ -17,7 +17,6 @@ export default function Header({active, home}) {
 
   useEffect(() => {
     const stored = localStorage.getItem('showBetaText');
-    console.log(stored);
     if (stored !== null) {
       setShowBetaText(stored == 'true');
     } else {
