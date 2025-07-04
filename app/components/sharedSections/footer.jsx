@@ -58,10 +58,18 @@ export default function Footer() {
             flexShrink='0'
           >
             <Box>
-              <IconButton aria-label="Facebook">
+              <IconButton
+                aria-label="Go to our Facebook"
+                component={NextLink}
+                href="https://www.facebook.com/people/Little-Big-Sound-Entertainment/100067206510756/"
+              >
                 <FacebookIcon />
               </IconButton>
-              <IconButton aria-label="Facebook">
+              <IconButton
+                aria-label="Go to our Instagram"
+                component={NextLink}
+                href="https://www.instagram.com/littlebigsoundentertainment/"
+              >
                 <InstagramIcon />
               </IconButton>
             </Box>

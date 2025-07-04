@@ -1,11 +1,11 @@
-'use client';
-import React, { useState } from 'react';
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+/* 'use client'; */
+import React/* , { useEffect, useState } */ from 'react';
+/* import { DotLottieReact } from "@lottiefiles/dotlottie-react"; */
 import { Box } from '@mui/material';
 import Image from 'next/image';
 
 export default function ABDLogo() {
-  const [logoRef, setLogoRef] = useState(null);
+  /* const [logoRef, setLogoRef] = useState(null);
 
   // Handle hover to play the animation
   const handleMouseEnter = () => {
@@ -21,9 +21,9 @@ export default function ABDLogo() {
       logoRef.setFrame(0);
     }
   };
-
+ */
   return (
-    <>
+    <>{/* 
       <Box
         component={DotLottieReact}
         src='/ABD.lottie'
@@ -36,10 +36,13 @@ export default function ABDLogo() {
         height={'100%'}
         role='img'
         aria-label='ABD logo'
-        sx={{ display: { xs: 'none', md: 'flex' }, height: { xs: 0, md: '100%'} }}
-      />
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          height: { xs: 0, md: '100%'}
+        }}
+      /> */}
       <Box
-        sx={{ display: { xs: 'flex', md: 'none'} }}
+        sx={{ display: { xs: 'flex' } }}
       >
         <Image
           src={'/abd-name.svg'}
