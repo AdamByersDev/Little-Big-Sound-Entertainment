@@ -7,11 +7,13 @@ import { useState, useEffect } from "react";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export default function Header({active, home}) {
+  const [showBetaText, setShowBetaText] = useState(false);
+  const [enableTransition, setEnableTransition] = useState(false);
+
   const showHeaderBG = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0
   });
-  const [showBetaText, setShowBetaText] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('showBetaText');
@@ -28,6 +30,14 @@ export default function Header({active, home}) {
     localStorage.setItem('showBetaText', showBetaText);
   }, [showBetaText]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setEnableTransition(true);
+    }, 1000); // 1 second delay
+  
+    return () => clearTimeout(timeout); // clean up on unmount
+  }, []);
+
   return (
     <AppBar
       position='fixed'
@@ -40,7 +50,7 @@ export default function Header({active, home}) {
       <Box sx={{
         backgroundColor: 'primary.dark',
         maxHeight: showBetaText? '72px' : '0px',
-        transition: 'max-height .2s',
+        transition: enableTransition ? 'max-height .2s' : '',
         overflow: 'hidden'
       }}>
         <Container
