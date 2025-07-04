@@ -9,7 +9,7 @@ export const revalidate = 120;
 export default function Home() {
   return (
     <>
-      <Header active='home' />
+      <Header active='home' home />
       <main>
         <HeroSection />
         <PlansSection />

@@ -1,4 +1,5 @@
 import UnderConstruction from "../components/pages/UnderConstruction";
+import Header from "../components/sharedSections/header";
 
 export const metadata = {
   title: "Plans",
@@ -7,6 +8,7 @@ export const metadata = {
 export default function Plans() {
   return (
     <>
+      <Header active='home' home />
       <main>
         <UnderConstruction />
       </main>

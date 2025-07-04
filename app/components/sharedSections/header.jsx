@@ -3,22 +3,34 @@
 import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export default function Header({active}) {
+export default function Header({active, home}) {
   const showHeaderBG = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0
   });
   const [showBetaText, setShowBetaText] = useState(true);
 
+  useEffect(() => {
+    const stored = localStorage.getItem('showBetaText');
+    console.log(stored);
+    if (stored !== null) {
+      setShowBetaText(stored == 'true');
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('showBetaText', showBetaText);
+  }, [showBetaText]);
+
   return (
     <AppBar
       position='fixed'
       elevation={0}
       sx={{
-        backgroundColor: showHeaderBG? 'background.paper' : '#00000000',
+        backgroundColor: (showHeaderBG || !home)? 'background.paper' : '#00000000',
         transition: 'background-color .2s'
       }}
     >
