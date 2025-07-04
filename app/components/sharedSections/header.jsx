@@ -44,7 +44,8 @@ export default function Header({active, home}) {
       elevation={0}
       sx={{
         backgroundColor: (showHeaderBG || !home)? 'background.paper' : '#00000000',
-        transition: 'background-color .2s'
+        boxShadow: (showHeaderBG || !home)? 'var(--mui-shadows-1)' : 'var(--mui-shadows-0)',
+        transition: 'background-color .2s, box-shadow .2s',
       }}
     >
       <Box sx={{
@@ -135,6 +136,13 @@ export default function Header({active, home}) {
               color={active?.toLowerCase() == 'plans'? "secondary" : "primary"}
             >
               Plans
+            </Button>
+            <Button
+              component={Link}
+              href="/gallery"
+              color={active?.toLowerCase() == 'gallery'? "secondary" : "primary"}
+            >
+              Gallery
             </Button>
           </Box>
         </Toolbar>

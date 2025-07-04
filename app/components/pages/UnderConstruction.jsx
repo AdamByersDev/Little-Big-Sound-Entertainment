@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function UnderConstruction() {
   return (
     <Container
+      maxWidth='xl'
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -12,7 +13,8 @@ export default function UnderConstruction() {
         flexDirection: 'column',
         height: '90vh',
         textAlign: 'center',
-        gap: '8px'
+        gap: '8px',
+        backgroundColor: 'background.paper'
       }}
     >
       <Typography variant="h1" sx={{display: 'none'}}>Little Big Sound Entertainment</Typography>
@@ -24,7 +26,8 @@ export default function UnderConstruction() {
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: '500px'
+          maxWidth: '500px',
+          aspectRatio: '2385/1448'
         }}
       />
       <Typography variant="body1">

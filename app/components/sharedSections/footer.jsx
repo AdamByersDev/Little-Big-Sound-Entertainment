@@ -93,6 +93,14 @@ export default function Footer() {
               </Link>
               <Link
                 component={NextLink}
+                href='/gallery'
+                underline='none'
+                color='textSecondary'
+              >
+                Gallery
+              </Link>
+              <Link
+                component={NextLink}
                 href='/admin'
                 underline='none'
                 color='textSecondary'

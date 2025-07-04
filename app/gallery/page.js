@@ -3,13 +3,13 @@ import Footer from "../components/sharedSections/footer";
 import Header from "../components/sharedSections/header";
 
 export const metadata = {
-  title: "Plans",
+  title: "Gallery",
 };
 
-export default function Plans() {
+export default function Gallery() {
   return (
     <>
-      <Header active='plans' />
+      <Header active='gallery' />
       <main>
         <UnderConstruction />
       </main>
