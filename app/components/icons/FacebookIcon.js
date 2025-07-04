@@ -1,8 +1,6 @@
 'use client';
 import FacebookOutlined from '@mui/icons-material/FacebookOutlined';
 
-const FacebookIcon = () => {
+export default function FacebookIcon() {
   return <FacebookOutlined />;
 };
-
-export default FacebookIcon;

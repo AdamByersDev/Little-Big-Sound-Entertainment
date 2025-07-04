@@ -1,8 +1,6 @@
 'use client';
 import Instagram from '@mui/icons-material/Instagram';
 
-const InstagramIcon = () => {
+export default function InstagramIcon() {
   return <Instagram />;
 };
-
-export default InstagramIcon;
