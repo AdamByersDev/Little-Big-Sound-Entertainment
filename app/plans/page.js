@@ -8,7 +8,7 @@ export const metadata = {
 export default function Plans() {
   return (
     <>
-      <Header active='plans' home />
+      <Header active='plans' />
       <main>
         <UnderConstruction />
       </main>
