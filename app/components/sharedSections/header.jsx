@@ -1,14 +1,17 @@
 'use client';
 
-import { AppBar, Box, Button, Container, Menu, Toolbar, useScrollTrigger } from "@mui/material";
+import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+
 export default function Header({active}) {
   const showHeaderBG = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 50
+    threshold: 0
   });
+  const [showBetaText, setShowBetaText] = useState(true);
 
   return (
     <AppBar
@@ -19,6 +22,30 @@ export default function Header({active}) {
         transition: 'background-color .2s'
       }}
     >
+      <Box sx={{
+        backgroundColor: 'primary.dark',
+        maxHeight: showBetaText? '72px' : '0px',
+        transition: 'max-height .2s',
+        overflow: 'hidden'
+      }}>
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Typography>
+            This website is still under construction. Some features may not be available yet.
+          </Typography>
+          <IconButton
+            onClick={() => {setShowBetaText(false)}}
+          >
+            <CloseOutlinedIcon />
+          </IconButton>
+        </Container>
+      </Box>
       <Container maxWidth="lg">
         <Toolbar disableGutters
           sx={{
