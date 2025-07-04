@@ -11,13 +11,16 @@ export default function Header({active, home}) {
     disableHysteresis: true,
     threshold: 0
   });
-  const [showBetaText, setShowBetaText] = useState(true);
+  const [showBetaText, setShowBetaText] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('showBetaText');
     console.log(stored);
     if (stored !== null) {
       setShowBetaText(stored == 'true');
+    } else {
+      setShowBetaText(true);
+      localStorage.setItem('showBetaText', true);
     }
   }, []);
 
