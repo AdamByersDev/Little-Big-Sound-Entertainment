@@ -87,7 +87,7 @@ CREATE VIEW availablepackages AS
     p.summary,
     p.prefered,
     p.musictime,
-    GROUP_CONCAT(pf.featureid ) as features
+    JSON_ARRAYAGG(pf.featureid) as features
   FROM packages p
   LEFT JOIN packagefeatures pf ON p.id = pf.packageid
   WHERE hidden = 0
@@ -309,4 +309,5 @@ INSERT INTO packagefeatures (packageid, featureid, addedby, addip) VALUES
 );
 
 GRANT SELECT ON lbse.availablepackages TO 'publiclbse'@'localhost';
+GRANT SELECT ON lbse.availablefeatures TO 'publiclbse'@'localhost';
 FLUSH PRIVILEGES;
