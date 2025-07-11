@@ -1,5 +1,5 @@
-import Footer from "./components/sharedSections/footer";
-import Header from "./components/sharedSections/header";
+import Footer from "@/lib/components/sharedSections/footer";
+import Header from "@/lib/components/sharedSections/header";
 import { Container, Typography, Box, Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
