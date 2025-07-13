@@ -52,7 +52,7 @@ jobs:
 
           cd ~/websites/little-big-sound-entertainment/dev
           git fetch origin --prune
-          git checkout $DEV_BRANCH || git checkout -b $DEV_BRANCH origin/$DEV_BRANCH
+          git checkout -B $DEV_BRANCH origin/$DEV_BRANCH
           git pull origin $DEV_BRANCH
           npm install && npm prune
           npm run build
