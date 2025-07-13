@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/home-page
+      - feature/plans-page
 
 jobs:
   deploy:
