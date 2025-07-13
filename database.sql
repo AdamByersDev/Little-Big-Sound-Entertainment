@@ -1,6 +1,3 @@
-DROP USER IF EXISTS 'publiclbse'@'localhost';
-CREATE USER 'publiclbse'@'localhost' IDENTIFIED BY 'publicPassword8675309';
-
 DROP DATABASE IF EXISTS lbse;
 CREATE DATABASE lbse;
 USE lbse;
@@ -80,7 +77,7 @@ CREATE TABLE packagefeatures (
   FOREIGN KEY (updatedby) REFERENCES admins(id)
 );
 
-CREATE VIEW availablepackages AS
+CREATE SQL SECURITY DEFINER VIEW availablepackages AS
   SELECT
     p.id,
     p.name,
@@ -92,15 +89,15 @@ CREATE VIEW availablepackages AS
   LEFT JOIN packagefeatures pf ON p.id = pf.packageid
   WHERE hidden = 0
   GROUP BY p.id
-  ORDER BY chosenorder;
+  ORDER BY p.chosenorder;
 
-CREATE VIEW availablefeatures AS
+CREATE SQL SECURITY DEFINER VIEW availablefeatures AS
   SELECT
     f.id,
     f.name,
     f.info
   FROM features f
-  INNER JOIN packagefeatures pf ON f.id = pf.featureid
+  INNER JOIN availablepackages pf ON f.id = pf.featureid
   GROUP BY f.id
   ORDER BY COUNT(pf.featureid) DESC, f.name ASC;
 
@@ -308,6 +305,8 @@ INSERT INTO packagefeatures (packageid, featureid, addedby, addip) VALUES
   '127.0.0.1'
 );
 
+DROP USER IF EXISTS 'publiclbse'@'localhost';
+CREATE USER 'publiclbse'@'localhost' IDENTIFIED BY 'publicPassword8675309';
 GRANT SELECT ON lbse.availablepackages TO 'publiclbse'@'localhost';
 GRANT SELECT ON lbse.availablefeatures TO 'publiclbse'@'localhost';
 FLUSH PRIVILEGES;
