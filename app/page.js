@@ -2,7 +2,7 @@ import Footer from "@/lib/components/sharedSections/footer";
 import Header from "@/lib/components/sharedSections/header";
 import ContactSection from "./sections/ContactSection";
 import HeroSection from "./sections/HeroSection";
-import PlansSection from "./sections/PlansSection";
+import PackagesSection from "./sections/PackagesSection";
 
 import { getPackages } from "@/lib/backend/api";
 
@@ -15,8 +15,8 @@ export default async function Home() {
       <Header active='home' home />
       <main>
         <HeroSection />
-        <PlansSection plans={data.plans}/>
-        <ContactSection plans={data.plans}/>
+        <PackagesSection packages={data.packages}/>
+        <ContactSection packages={data.packages}/>
       </main>
       <Footer />
     </>

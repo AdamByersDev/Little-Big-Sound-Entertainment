@@ -1,6 +1,8 @@
-import { Card, CardContent, CardActions, Container, Grid, Box, Typography, Button } from "@mui/material";
+import { Card, CardContent, CardActions, Container, Grid, Box, Typography, Button, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import ArrowForwardIcon from "@/lib/components/icons/ArrowForwardIcon";
 import Link from "next/link";
+import CheckIcon from "@/lib/components/icons/CheckIcon";
+import XIcon from "@/lib/components/icons/XIcon";
 
 function getCardSizes(length, index) {
   let xs = 12;
@@ -12,14 +14,14 @@ function getCardSizes(length, index) {
   return {xs: xs, md: md}
 }
 
-export default async function PlansSection({ plans }) {
+export default async function PackagesSection({ packages, features }) {
   return(
     <Container
       component='section'
-      id="plans"
+      id="packages"
       maxWidth='xl'
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'grey.900',
         position: 'relative',
       }}
     >
@@ -38,9 +40,9 @@ export default async function PlansSection({ plans }) {
             Our Packages
           </Typography>
         </Grid>
-        {plans.map(((plan, index) => (
-          <Grid key={index} size={getCardSizes(plans.length, index)} zIndex={1}>
-            <PlanSummaryCard id={plan.id} name={plan.name} summary={plan.summary} prefered={plan.prefered}/>
+        {packages.map(((pack, index) => (
+          <Grid key={index} size={getCardSizes(packages.length, index)} zIndex={1}>
+            <PackageSummaryCard id={pack.id} name={pack.name} time={pack.musictime} prefered={pack.prefered} packageFeatures={pack.features} features={features}/>
           </Grid>
         )))}
       </Grid>
@@ -48,9 +50,10 @@ export default async function PlansSection({ plans }) {
   )
 }
 
-function PlanSummaryCard({ id, name, summary, prefered }) {
+function PackageSummaryCard({ id, name, time, prefered, packageFeatures, features }) {
   return(
     <Card
+      id={id}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -63,32 +66,24 @@ function PlanSummaryCard({ id, name, summary, prefered }) {
         '&:hover': {
           transform: 'translateY(-4px)',
           boxShadow: 6,
-        }
+        },
+        scrollMarginTop: { xs: '68px', sm: '76px' }
       }}
       component='article'
     >
-      {prefered == 1 && (
-        <Box
-          sx={{
-            position: 'absolute',
-            backgroundImage: 'linear-gradient(135deg, var(--mui-palette-secondary-light), var(--mui-palette-primary-dark))',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            opacity: 0.3
-          }}
-        />
-      )}
       <CardContent
         sx={{
           flexGrow: 1,
-          zIndex: 1
+          zIndex: 1,
+          paddingBottom: 0,
         }}
       >
         <Box>
           <Typography variant='h6' component='h3'>
             {name}
+          </Typography>
+          <Typography variant='subtitle1' component='p'>
+            <strong>{time}</strong> hours of music
           </Typography>
         </Box>
         <Box sx={{
@@ -97,9 +92,25 @@ function PlanSummaryCard({ id, name, summary, prefered }) {
           width: '100%',
           backgroundColor: prefered == 2 ? 'secondary.dark' : prefered == 1 ? 'primary.main' : 'primary.dark',
         }} />
-        <Typography variant='body2' sx={{ mt: 1, color: 'text.secondary' }}>
-          {summary}
-        </Typography>
+        <List>
+          {features.map((feature, index) => (
+            <ListItem
+              disablePadding
+              key={index}
+            >
+              <ListItemIcon
+                sx={{
+                  color: packageFeatures.includes(feature.id)? 'success.main' : 'error.main'
+                }}
+              >
+                {packageFeatures.includes(feature.id)? <CheckIcon /> : <XIcon />}
+              </ListItemIcon>
+              <ListItemText>
+              {!packageFeatures.includes(feature.id)&& 'No'} {feature.name}
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
       </CardContent>
       <CardActions>
         <Button
@@ -107,10 +118,10 @@ function PlanSummaryCard({ id, name, summary, prefered }) {
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
           component={Link}
-          href={`/plans#${id}`}
-          aria-label={`Learn more about the ${name}`}
+          href={`/?consult=${id}`}
+          aria-label={`Request a consultation about the ${name}`}
         >
-          Learn More
+          Request a consultation
           <ArrowForwardIcon />
         </Button>
       </CardActions>

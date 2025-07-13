@@ -131,8 +131,8 @@ export default function Header({active, home}) {
             </Button>
             <Button
               component={Link}
-              href="/plans"
-              color={active?.toLowerCase() == 'plans'? "secondary" : "primary"}
+              href="/packages"
+              color={active?.toLowerCase() == 'packages'? "secondary" : "primary"}
             >
               Packages
             </Button>

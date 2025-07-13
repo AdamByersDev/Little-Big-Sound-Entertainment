@@ -1,7 +1,7 @@
 import UnderConstruction from "@/lib/components/pages/UnderConstruction";
 import Footer from "@/lib/components/sharedSections/footer";
 import Header from "@/lib/components/sharedSections/header";
-import PlansSection from "./sections/PlansSection";
+import PackagesSection from "./sections/PackagesSection";
 
 import { getFullPackageData } from "@/lib/backend/api";
 
@@ -10,13 +10,13 @@ export const metadata = {
   title: "Packages",
 };
 
-export default async function Plans() {
+export default async function Packages() {
   const data = await getFullPackageData();
   return (
     <>
-      <Header active='plans' />
+      <Header active='packages' />
       <main>
-        <PlansSection plans={data.plans} features={data.features}/>
+        <PackagesSection packages={data.packages} features={data.features}/>
       </main>
       <Footer />
     </>

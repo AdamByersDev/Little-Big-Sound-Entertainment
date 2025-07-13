@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <Container
       component='footer'
-      id="plans"
+      id="packages"
       maxWidth='xl'
       sx={{
         backgroundColor: 'black',
@@ -85,11 +85,11 @@ export default function Footer() {
               </Link>
               <Link
                 component={NextLink}
-                href='/plans'
+                href='/packages'
                 underline='none'
                 color='textSecondary'
               >
-                Plans
+                Packages
               </Link>
               <Link
                 component={NextLink}

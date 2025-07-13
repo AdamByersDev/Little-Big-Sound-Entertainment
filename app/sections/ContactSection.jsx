@@ -10,7 +10,7 @@ async function sendEmail(formData) {
   const name = formData.get('name');
   const email = formData.get('email');
   const phone = formData.get('phone');
-  const plan = formData.get('plan');
+  const pack = formData.get('package');
   const info = formData.get('info');
   const toSender = formData.get('to-sender');
 
@@ -34,7 +34,7 @@ async function sendEmail(formData) {
         <li>Phone: ${phone? `<a href='tel:${phone}'>${phone}</a>` : 'Not provided'}</li>
       </ul>
     </p>
-    <p>Chosen plan: ${plan}</p>
+    <p>Chosen package: ${pack}</p>
     ${info && (`
       <p>Additional info:<br />
       ${info}</p>
@@ -64,10 +64,10 @@ async function sendEmail(formData) {
   }
 
 
-  console.log(`${name}, ${email}, ${phone}, ${plan}, ${info}, ${toSender}`);
+  console.log(`${name}, ${email}, ${phone}, ${pack}, ${info}, ${toSender}`);
 }
 
-export default async function ContactSection({ plans }) {
+export default async function ContactSection({ packages }) {
   return (
     <Container
       component='section'
@@ -110,22 +110,22 @@ export default async function ContactSection({ plans }) {
             />
             <PhoneInput />
             <FormControl>
-              <InputLabel id="plan-label">Plan</InputLabel>
+              <InputLabel id="package-label">Package</InputLabel>
               <Select
-                labelId="plan-label"
-                name='plan'
-                label='Plan'
+                labelId="package-label"
+                name='package'
+                label='Package'
                 defaultValue=''
                 variant='outlined'
               >
                 <MenuItem value=''>
                   <em>Other</em>
                 </MenuItem>
-                {plans.map(((plan, index) => (
+                {packages.map(((pack, index) => (
                   <MenuItem
-                    key={index} value={plan.name}
+                    key={index} value={pack.name}
                   >
-                    {plan.name}
+                    {pack.name}
                   </MenuItem>
                 )))}
               </Select>

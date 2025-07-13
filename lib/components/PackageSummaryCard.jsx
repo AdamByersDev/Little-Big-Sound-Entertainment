@@ -2,7 +2,7 @@ import { Button, Card, CardContent, CardActions, Typography, Box } from "@mui/ma
 import ArrowForwardIcon from "./icons/ArrowForwardIcon";
 import Link from "next/link";
 
-export default function PlanSummaryCard({ id, name, summary, prefered }) {
+export default function PackageSummaryCard({ id, name, summary, prefered }) {
   return(
     <Card
       sx={{
@@ -61,7 +61,7 @@ export default function PlanSummaryCard({ id, name, summary, prefered }) {
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
           component={Link}
-          href={`/plans#${id}`}
+          href={`/packages#${id}`}
           aria-label={`Learn more about the ${name}`}
         >
           Learn More
