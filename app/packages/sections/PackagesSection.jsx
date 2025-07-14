@@ -1,8 +1,16 @@
+'use client';
 import { Card, CardContent, CardActions, Container, Grid, Box, Typography, Button, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import ArrowForwardIcon from "@/lib/components/icons/ArrowForwardIcon";
 import Link from "next/link";
 import CheckIcon from "@/lib/components/icons/CheckIcon";
 import XIcon from "@/lib/components/icons/XIcon";
+import dynamic from "next/dynamic";
+const ServiceAreaMap = dynamic(
+  () => import('@/lib/components/ServiceAreaMap'),
+  {
+    ssr: false
+  }
+);
 
 function getCardSizes(length, index) {
   let xs = 12;
@@ -14,7 +22,7 @@ function getCardSizes(length, index) {
   return {xs: xs, md: md}
 }
 
-export default async function PackagesSection({ packages, features }) {
+export default function PackagesSection({ packages, features }) {
   return(
     <Container
       component='section'
@@ -34,7 +42,7 @@ export default async function PackagesSection({ packages, features }) {
         }}
       >
         <Typography variant="h3" component='h1'>
-          Our Packages
+          Packages
         </Typography>
       </Box>
       <Grid
@@ -65,13 +73,36 @@ export default async function PackagesSection({ packages, features }) {
         }}
         // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+
       >
-        <Grid size={6} zIndex={1}>
-          <Typography variant='body1'>
+        <Grid
+          size={6}
+          sx={{
+            zIndex: 1,
+            alignItems: 'flex-start',
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'justify',
+            justifyContent: 'center'
+          }}
+        >
+          <Typography variant="h4" component='h2'>
+            Our Service Area
+          </Typography>
+          <Typography
+            variant='body1'
+          >
             Whether you’re local or a little further out, we’ve got you covered. Our standard service area includes locations within 50km of St. Thomas, Ontario with no additional charge. If your event is beyond that, we’re happy to make the trip! A travel fee will apply based on the distance, and we’ll provide a clear quote up front so there are no surprises. Wherever the party is, we’ll be there.
           </Typography>
         </Grid>
-        <Grid size={6} zIndex={1}>
-          
+        <Grid
+          size={6}
+          zIndex={1}
+          sx={{
+            aspectRatio: '3/2',
+            backgroundColor: '#090909',
+            borderRadius: 'var(--mui-shape-borderRadius)'
+          }}
+        >
+          <ServiceAreaMap />
         </Grid>
       </Grid>
       <Box
@@ -79,11 +110,15 @@ export default async function PackagesSection({ packages, features }) {
         sx={{
           marginX: 'auto',
           paddingY: 4,
-          paddingX: { xs: 0, sm: 4 }
+          paddingX: { xs: 0, sm: 4 },
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
-        <Typography variant='body2' textAlign='center'>
-          The packages as shown are subject to change. We reserve the right to modify them as we see fit. For pricing, please contact us for a consultation.
+        <Typography variant='body2'>
+          The packages as shown are subject to change. We reserve the right to modify them as we see fit.<br />For pricing, please contact us for a consultation.
         </Typography>
       </Box>
     </Container>
