@@ -34,6 +34,9 @@ export default function Footer() {
           flexDirection={{xs: 'column', sm: 'row'}}
           width='100%'
           alignItems={{xs: 'center', sm: 'flex-start'}}
+          sx={{
+            paddingX: { xs: 0, sm: 4 }
+          }}
           justifyContent={{xs: 'center', sm: 'space-between'}}
         >
           <Image

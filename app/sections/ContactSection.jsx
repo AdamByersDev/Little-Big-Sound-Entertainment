@@ -1,3 +1,5 @@
+'use server';
+
 import { Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "@/lib/components/PhoneInput";
@@ -67,7 +69,7 @@ async function sendEmail(formData) {
   console.log(`${name}, ${email}, ${phone}, ${pack}, ${info}, ${toSender}`);
 }
 
-export default async function ContactSection({ packages }) {
+export default async function ContactSection({ packages, searchParams }) {
   return (
     <Container
       component='section'
@@ -86,7 +88,9 @@ export default async function ContactSection({ packages }) {
         padding={4}
         maxWidth='lg'
         sx={{
-          marginX: 'auto'
+          marginX: 'auto',
+          paddingY: 4,
+          paddingX: { xs: 0, sm: 4 }
         }}
       >
         <Grid size={12} zIndex={1}>
@@ -115,7 +119,13 @@ export default async function ContactSection({ packages }) {
                 labelId="package-label"
                 name='package'
                 label='Package'
-                defaultValue=''
+                defaultValue={
+                  (
+                    packages.find(
+                      (pack) => (pack.id == searchParams.consult)
+                    )?.name
+                  ) ?? ''
+                }
                 variant='outlined'
               >
                 <MenuItem value=''>

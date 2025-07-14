@@ -1,4 +1,3 @@
-import UnderConstruction from "@/lib/components/pages/UnderConstruction";
 import Footer from "@/lib/components/sharedSections/footer";
 import Header from "@/lib/components/sharedSections/header";
 import PackagesSection from "./sections/PackagesSection";
@@ -16,7 +15,10 @@ export default async function Packages() {
     <>
       <Header active='packages' />
       <main>
-        <PackagesSection packages={data.packages} features={data.features}/>
+        <PackagesSection
+          packages={data.packages}
+          features={data.features}
+        />
       </main>
       <Footer />
     </>

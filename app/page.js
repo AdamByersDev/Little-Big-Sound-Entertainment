@@ -8,15 +8,20 @@ import { getPackages } from "@/lib/backend/api";
 
 export const revalidate = 120;
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
   const data = await getPackages();
   return (
     <>
       <Header active='home' home />
       <main>
         <HeroSection />
-        <PackagesSection packages={data.packages}/>
-        <ContactSection packages={data.packages}/>
+        <PackagesSection
+          packages={data.packages}
+        />
+        <ContactSection 
+          packages={data.packages}
+          searchParams={await searchParams}
+        />
       </main>
       <Footer />
     </>

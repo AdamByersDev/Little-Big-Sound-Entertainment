@@ -25,9 +25,56 @@ export default async function PackagesSection({ packages, features }) {
         position: 'relative',
       }}
     >
+      <Box
+        maxWidth='lg'
+        sx={{
+          marginX: 'auto',
+          paddingTop: 4,
+          paddingX: { xs: 0, sm: 4 }
+        }}
+      >
+        <Typography variant="h3" component='h1'>
+          Our Packages
+        </Typography>
+      </Box>
       <Grid
         container
         spacing={4}
+        maxWidth='lg'
+        sx={{
+          marginX: 'auto',
+          paddingTop: 4,
+          paddingX: { xs: 0, sm: 4 }
+        }}
+      >
+        {packages.map(((pack, index) => (
+          <Grid key={index} size={getCardSizes(packages.length, index)} zIndex={1}>
+            <PackageSummaryCard id={pack.id} name={pack.name} time={pack.musictime} prefered={pack.prefered} packageFeatures={pack.features} features={features}/>
+          </Grid>
+        )))}
+      </Grid>
+      <Grid
+        container
+        spacing={4}
+        maxWidth='lg'
+        columns={{ xs: 6, md: 12}}
+        sx={{
+          marginX: 'auto',
+          paddingTop: 4,
+          paddingX: { xs: 0, sm: 4 }
+        }}
+        // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+
+      >
+        <Grid size={6} zIndex={1}>
+          <Typography variant='body1'>
+            Whether you’re local or a little further out, we’ve got you covered. Our standard service area includes locations within 50km of St. Thomas, Ontario with no additional charge. If your event is beyond that, we’re happy to make the trip! A travel fee will apply based on the distance, and we’ll provide a clear quote up front so there are no surprises. Wherever the party is, we’ll be there.
+          </Typography>
+        </Grid>
+        <Grid size={6} zIndex={1}>
+          
+        </Grid>
+      </Grid>
+      <Box
         maxWidth='lg'
         sx={{
           marginX: 'auto',
@@ -35,17 +82,10 @@ export default async function PackagesSection({ packages, features }) {
           paddingX: { xs: 0, sm: 4 }
         }}
       >
-        <Grid size={12} zIndex={1}>
-          <Typography variant="h4" component='h2'>
-            Our Packages
-          </Typography>
-        </Grid>
-        {packages.map(((pack, index) => (
-          <Grid key={index} size={getCardSizes(packages.length, index)} zIndex={1}>
-            <PackageSummaryCard id={pack.id} name={pack.name} time={pack.musictime} prefered={pack.prefered} packageFeatures={pack.features} features={features}/>
-          </Grid>
-        )))}
-      </Grid>
+        <Typography variant='body2' textAlign='center'>
+          The packages as shown are subject to change. We reserve the right to modify them as we see fit. For pricing, please contact us for a consultation.
+        </Typography>
+      </Box>
     </Container>
   )
 }
@@ -118,7 +158,7 @@ function PackageSummaryCard({ id, name, time, prefered, packageFeatures, feature
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
           component={Link}
-          href={`/?consult=${id}`}
+          href={`/?consult=${id}#contact`}
           aria-label={`Request a consultation about the ${name}`}
         >
           Request a consultation

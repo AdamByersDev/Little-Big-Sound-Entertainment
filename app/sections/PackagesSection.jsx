@@ -21,6 +21,7 @@ export default async function PackagesSection({ packages }) {
       sx={{
         backgroundColor: 'background.paper',
         position: 'relative',
+        scrollMarginTop: '64px',
       }}
     >
       <Grid
@@ -35,7 +36,7 @@ export default async function PackagesSection({ packages }) {
       >
         <Grid size={12} zIndex={1}>
           <Typography variant="h4" component='h2'>
-            Our Packages
+            See Our Packages
           </Typography>
         </Grid>
         {packages.map(((pack, index) => (

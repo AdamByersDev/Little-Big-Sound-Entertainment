@@ -43,6 +43,7 @@ export default function HeroSection() {
           paddingTop: '64px',
           gap: '8px',
           zIndex: '1',
+          paddingX: { xs: 0, sm: 4 }
         }}
       >
         <Box sx={{

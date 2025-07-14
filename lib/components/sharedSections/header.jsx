@@ -58,7 +58,8 @@ export default function Header({active, home}) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            paddingX: { xs: 0, sm: 4 }
           }}
         >
           <Typography>
