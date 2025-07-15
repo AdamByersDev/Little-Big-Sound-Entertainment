@@ -77,6 +77,7 @@ export default async function ContactSection({ packages, searchParams }) {
       sx={{
         backgroundColor: 'grey.900',
         position: 'relative',
+        paddingX: 2
       }}
     >
       <Grid

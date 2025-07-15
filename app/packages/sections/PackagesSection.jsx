@@ -30,6 +30,7 @@ export default function PackagesSection({ packages, features }) {
       sx={{
         backgroundColor: 'grey.900',
         position: 'relative',
+        paddingX: 2
       }}
     >
       <Box
@@ -66,10 +67,10 @@ export default function PackagesSection({ packages, features }) {
         maxWidth='lg'
         columns={{ xs: 6, md: 12}}
         sx={{
-          backgroundColor: { xs: '', sm: 'background.paper' },
+          backgroundColor: { sm: 'background.paper' },
           marginX: 'auto',
-          paddingY: { xs: 0, sm: 4 },
           paddingX: { xs: 0, sm: 4 },
+          paddingY: { xs: 0, sm: 4 },
           borderRadius: 4
         }}
         // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+

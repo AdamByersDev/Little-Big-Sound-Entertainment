@@ -21,6 +21,7 @@ export default async function PackagesSection({ packages }) {
         backgroundColor: 'background.paper',
         position: 'relative',
         scrollMarginTop: '64px',
+        paddingX: 2
       }}
     >
       <Grid
