@@ -1,5 +1,5 @@
 'use client';
-import { Card, CardContent, CardActions, Container, Grid, Box, Typography, Button, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
+import { Card, CardContent, CardActions, Grid, Box, Typography, Button, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import ArrowForwardIcon from "@/lib/components/icons/ArrowForwardIcon";
 import Link from "next/link";
 import CheckIcon from "@/lib/components/icons/CheckIcon";
@@ -24,10 +24,9 @@ function getCardSizes(length, index) {
 
 export default function PackagesSection({ packages, features }) {
   return(
-    <Container
+    <Box
       component='section'
       id="packages"
-      maxWidth='xl'
       sx={{
         backgroundColor: 'grey.900',
         position: 'relative',
@@ -51,7 +50,7 @@ export default function PackagesSection({ packages, features }) {
         maxWidth='lg'
         sx={{
           marginX: 'auto',
-          paddingTop: 4,
+          paddingY: 4,
           paddingX: { xs: 0, sm: 4 }
         }}
       >
@@ -67,9 +66,11 @@ export default function PackagesSection({ packages, features }) {
         maxWidth='lg'
         columns={{ xs: 6, md: 12}}
         sx={{
+          backgroundColor: { xs: '', sm: 'background.paper' },
           marginX: 'auto',
-          paddingTop: 4,
-          paddingX: { xs: 0, sm: 4 }
+          paddingY: { xs: 0, sm: 4 },
+          paddingX: { xs: 0, sm: 4 },
+          borderRadius: 4
         }}
         // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+
       >
@@ -121,7 +122,7 @@ export default function PackagesSection({ packages, features }) {
           The packages as shown are subject to change. We reserve the right to modify them as we see fit.<br />For pricing, please contact us for a consultation.
         </Typography>
       </Box>
-    </Container>
+    </Box>
   )
 }
 

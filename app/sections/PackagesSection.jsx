@@ -14,10 +14,9 @@ function getCardSizes(length, index) {
 
 export default async function PackagesSection({ packages }) {
   return(
-    <Container
+    <Box
       component='section'
       id="packages"
-      maxWidth='xl'
       sx={{
         backgroundColor: 'background.paper',
         position: 'relative',
@@ -45,7 +44,7 @@ export default async function PackagesSection({ packages }) {
           </Grid>
         )))}
       </Grid>
-    </Container>
+    </Box>
   )
 }
 

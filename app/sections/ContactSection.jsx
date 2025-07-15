@@ -1,6 +1,6 @@
 'use server';
 
-import { Checkbox, Container, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
+import { Checkbox, Box, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "@/lib/components/PhoneInput";
 import nodemailer from 'nodemailer';
@@ -71,10 +71,9 @@ async function sendEmail(formData) {
 
 export default async function ContactSection({ packages, searchParams }) {
   return (
-    <Container
+    <Box
       component='section'
       id="contact"
-      maxWidth='xl'
       sx={{
         backgroundColor: 'grey.900',
         position: 'relative',
@@ -180,6 +179,6 @@ export default async function ContactSection({ packages, searchParams }) {
           </FormButton>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   )
 }

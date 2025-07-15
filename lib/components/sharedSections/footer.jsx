@@ -7,10 +7,9 @@ import ABDLogo from "../icons/ABDLogo";
 
 export default function Footer() {
   return (
-    <Container
+    <Box
       component='footer'
       id="packages"
-      maxWidth='xl'
       sx={{
         backgroundColor: 'black',
         position: 'relative',
@@ -141,6 +140,6 @@ export default function Footer() {
           </Link>
         </Box>
       </Container>
-    </Container>
+    </Box>
   )
 }
