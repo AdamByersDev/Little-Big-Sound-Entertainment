@@ -67,6 +67,7 @@ export default function Header({active, home}) {
           </Typography>
           <IconButton
             onClick={() => {setShowBetaText(false)}}
+            aria-label="Close beta notification"
           >
             <CloseOutlinedIcon />
           </IconButton>

@@ -3,22 +3,20 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <Box
-      sx={{
-        backgroundColor: 'secondary.extraDark'
-      }}
-    >
+    <Box>
       <Container
         sx={{
           backgroundColor: 'secondary.dark',
-          aspectRatio: {md: '16/9'},
           height: 'auto',
           display: 'flex',
           alignItems: 'end',
-          paddingTop: {xs: '72px', md: '8px'},
+          maxHeight: {xs: 'auto', md: '864px'},
+          paddingTop: '72px',
           position: 'relative',
+          maxWidth: '2560px',
+          marginX: 'auto',
         }}
-        maxWidth='xl'
+        maxWidth='auto'
         component='section'
         id="hero"
       >
@@ -29,12 +27,11 @@ export default function HeroSection() {
           left: 0,
           right: 0,
           marginX: 'auto',
-          maxWidth: 'xl',
           backgroundImage: 'url("/hero.webp")',
-          backgroundPosition: 'center',
+          backgroundPosition: 'top',
           backgroundSize: 'cover',
           zIndex: '0',
-          opacity: '0.5',
+          opacity: '0.75',
           filter: 'grayscale(100%) brightness(30%)',
         }} />
         <Container
@@ -46,7 +43,7 @@ export default function HeroSection() {
             flexDirection: 'column',
             justifyContent: 'end',
             alignItems: 'center',
-            paddingBottom: {xs: '12vh', md: '10%'},
+            paddingBottom: {xs: '12vh', md: '100px'},
             paddingTop: '64px',
             gap: '8px',
             zIndex: '1',

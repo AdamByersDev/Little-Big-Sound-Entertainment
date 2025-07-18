@@ -41,9 +41,13 @@ export default function PackagesSection({ packages, features }) {
           paddingX: { xs: 0, sm: 4 }
         }}
       >
-        <Typography variant="h3" component='h1'>
-          Packages
-        </Typography>
+      <Typography variant="h3" component='h1'>
+        Packages
+      </Typography>
+      <Typography variant="body1">
+        Our packages are built to be flexible, so you get exactly what you need for the time you need us. <br />
+        Whether it's a few hours or the whole night, we'll help you find the right fit for your event.
+      </Typography>
       </Box>
       <Grid
         container
@@ -61,57 +65,66 @@ export default function PackagesSection({ packages, features }) {
           </Grid>
         )))}
       </Grid>
-      <Grid
-        container
-        spacing={4}
-        maxWidth='lg'
-        columns={{ xs: 6, md: 12}}
+      <Box
         sx={{
-          backgroundColor: { sm: 'background.paper' },
           marginX: 'auto',
-          paddingX: { xs: 0, sm: 4 },
-          paddingY: { xs: 0, sm: 4 },
-          borderRadius: 4
+          paddingX: { xs: 0, sm: 4 }
         }}
-        // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+
+        maxWidth='lg'
       >
         <Grid
-          size={6}
+          container
+          spacing={4}
+          maxWidth='lg'
+          columns={{ xs: 6, md: 12}}
           sx={{
-            zIndex: 1,
-            alignItems: 'flex-start',
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'justify',
-            justifyContent: 'center'
+            backgroundColor: { sm: 'background.paper' },
+            marginX: 'auto',
+            paddingX: { xs: 0, sm: 4 },
+            paddingY: { xs: 0, sm: 4 },
+            borderRadius: 4
           }}
+          // Set it so that the grid is 12 wide when md/lg+ and 6 when xs+
         >
-          <Typography variant="h4" component='h2'>
-            Our Service Area
-          </Typography>
-          <Typography
-            variant='body1'
+          <Grid
+            size={6}
+            sx={{
+              zIndex: 1,
+              alignItems: 'flex-start',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
           >
-            Whether you’re local or a little further out, we’ve got you covered. Our standard service area includes locations within 50km of St. Thomas, Ontario with no additional charge. If your event is beyond that, we’re happy to make the trip! A travel fee will apply based on the distance, and we’ll provide a clear quote up front so there are no surprises. Wherever the party is, we’ll be there.
-          </Typography>
+            <Typography variant="h4" component='h2'>
+              Our Service Area
+            </Typography>
+            <Typography
+              variant='body1'
+            >
+              Whether you’re local or a little further out, we’ve got you covered. Our standard service area includes locations within 50km of St. Thomas, Ontario with no additional charge. If your event is beyond that, we’re happy to make the trip! A travel fee will apply based on the distance, and we’ll provide a clear quote up front so there are no surprises. Wherever the party is, we’ll be there.
+            </Typography>
+          </Grid>
+          <Grid
+            size={6}
+            zIndex={1}
+            sx={{
+              aspectRatio: '3/2',
+              backgroundColor: '#090909',
+              borderRadius: 'var(--mui-shape-borderRadius)'
+            }}
+          >
+            <ServiceAreaMap />
+          </Grid>
         </Grid>
-        <Grid
-          size={6}
-          zIndex={1}
-          sx={{
-            aspectRatio: '3/2',
-            backgroundColor: '#090909',
-            borderRadius: 'var(--mui-shape-borderRadius)'
-          }}
-        >
-          <ServiceAreaMap />
-        </Grid>
-      </Grid>
+      </Box>
+      
       <Box
         maxWidth='lg'
         sx={{
           marginX: 'auto',
-          paddingY: 4,
+          paddingTop: 4,
+          paddingBottom: 2,
           paddingX: { xs: 0, sm: 4 },
           textAlign: 'center',
           display: 'flex',
@@ -120,7 +133,7 @@ export default function PackagesSection({ packages, features }) {
         }}
       >
         <Typography variant='body2'>
-          The packages as shown are subject to change. We reserve the right to modify them as we see fit.<br />For pricing, please contact us for a consultation.
+          The packages as shown are subject to change. We reserve the right to modify them as we see fit. For pricing, please contact us for a consultation.
         </Typography>
       </Box>
     </Box>
@@ -156,7 +169,7 @@ function PackageSummaryCard({ id, name, time, prefered, packageFeatures, feature
         }}
       >
         <Box>
-          <Typography variant='h6' component='h3'>
+          <Typography variant='h6' component='h2'>
             {name}
           </Typography>
           <Typography variant='subtitle1' component='p'>
