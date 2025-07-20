@@ -39,7 +39,7 @@ export default function Header({active, home}) {
 
   return (
     <AppBar
-      position='fixed'
+      position={home? 'fixed' : 'sticky'}
       elevation={0}
       sx={{
         backgroundColor: (showHeaderBG || !home)? 'background.paper' : '#00000000',
@@ -58,7 +58,8 @@ export default function Header({active, home}) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            paddingX: { xs: 0, sm: 4 }
           }}
         >
           <Typography>
@@ -66,6 +67,7 @@ export default function Header({active, home}) {
           </Typography>
           <IconButton
             onClick={() => {setShowBetaText(false)}}
+            aria-label="Close beta notification"
           >
             <CloseOutlinedIcon />
           </IconButton>
@@ -119,7 +121,7 @@ export default function Header({active, home}) {
             component='nav'
             sx={{
               display: 'flex',
-              gap: 1
+              gap: { xs: 0, sm: 1 }
             }}
           >
             <Button
@@ -131,10 +133,10 @@ export default function Header({active, home}) {
             </Button>
             <Button
               component={Link}
-              href="/plans"
-              color={active?.toLowerCase() == 'plans'? "secondary" : "primary"}
+              href="/packages"
+              color={active?.toLowerCase() == 'packages'? "secondary" : "primary"}
             >
-              Plans
+              Packages
             </Button>
             <Button
               component={Link}

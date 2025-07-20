@@ -1,8 +1,55 @@
-import { Button, Card, CardContent, CardActions, Typography, Box } from "@mui/material";
-import ArrowForwardIcon from "./icons/ArrowForwardIcon";
+import { Card, CardContent, CardActions, Container, Grid, Box, Typography, Button } from "@mui/material";
+import ArrowForwardIcon from "@/lib/components/icons/ArrowForwardIcon";
 import Link from "next/link";
 
-export default function PlanSummaryCard({ id, name, summary, prefered }) {
+function getCardSizes(length, index) {
+  let xs = 12;
+  let md = (
+    (length == (index + 1)
+  ) && (
+    (length % 2) != 0
+  ))? 12 : 6;
+  return {xs: xs, md: md}
+}
+
+export default async function PackagesSection({ packages }) {
+  return(
+    <Box
+      component='section'
+      id="packages"
+      sx={{
+        backgroundColor: 'background.paper',
+        position: 'relative',
+        scrollMarginTop: '64px',
+        paddingX: 2
+      }}
+    >
+      <Grid
+        container
+        spacing={4}
+        maxWidth='lg'
+        sx={{
+          marginX: 'auto',
+          paddingY: 4,
+          paddingX: { xs: 0, sm: 4 }
+        }}
+      >
+        <Grid size={12} zIndex={1}>
+          <Typography variant="h4" component='h2'>
+            See Our Packages
+          </Typography>
+        </Grid>
+        {packages.map(((pack, index) => (
+          <Grid key={index} size={getCardSizes(packages.length, index)} zIndex={1}>
+            <PackageSummaryCard id={pack.id} name={pack.name} summary={pack.summary} prefered={pack.prefered}/>
+          </Grid>
+        )))}
+      </Grid>
+    </Box>
+  )
+}
+
+function PackageSummaryCard({ id, name, summary, prefered }) {
   return(
     <Card
       sx={{
@@ -61,7 +108,7 @@ export default function PlanSummaryCard({ id, name, summary, prefered }) {
           color={prefered == 2? 'secondary' : 'primary'}
           fullWidth
           component={Link}
-          href={`/plans#${id}`}
+          href={`/packages#${id}`}
           aria-label={`Learn more about the ${name}`}
         >
           Learn More

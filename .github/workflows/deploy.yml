@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/home-page
+      - feature/plans-page
 
 jobs:
   deploy:
@@ -43,7 +43,7 @@ jobs:
         DEV_BRANCH: ${{ secrets.DEV_BRANCH }}
       if: github.ref_name == env.DEV_BRANCH
       run: |
-        ssh -p 2222 abyers@abyers.ca << 'EOF'
+        ssh -p 2222 abyers@abyers.ca "export DEV_BRANCH=${DEV_BRANCH} && bash -s" << "EOF"
           set -e
 
           export NVM_DIR="/home/abyers/.nvm"
@@ -51,8 +51,8 @@ jobs:
           nvm use 22
 
           cd ~/websites/little-big-sound-entertainment/dev
-          git fetch origin
-          git checkout $DEV_BRANCH
+          git fetch origin --prune
+          git checkout -B $DEV_BRANCH origin/$DEV_BRANCH
           git pull origin $DEV_BRANCH
           npm install && npm prune
           npm run build

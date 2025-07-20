@@ -7,10 +7,9 @@ import ABDLogo from "../icons/ABDLogo";
 
 export default function Footer() {
   return (
-    <Container
+    <Box
       component='footer'
-      id="plans"
-      maxWidth='xl'
+      id="packages"
       sx={{
         backgroundColor: 'black',
         position: 'relative',
@@ -34,6 +33,9 @@ export default function Footer() {
           flexDirection={{xs: 'column', sm: 'row'}}
           width='100%'
           alignItems={{xs: 'center', sm: 'flex-start'}}
+          sx={{
+            paddingX: { xs: 0, sm: 4 }
+          }}
           justifyContent={{xs: 'center', sm: 'space-between'}}
         >
           <Image
@@ -85,11 +87,11 @@ export default function Footer() {
               </Link>
               <Link
                 component={NextLink}
-                href='/plans'
+                href='/packages'
                 underline='none'
                 color='textSecondary'
               >
-                Plans
+                Packages
               </Link>
               <Link
                 component={NextLink}
@@ -138,6 +140,6 @@ export default function Footer() {
           </Link>
         </Box>
       </Container>
-    </Container>
+    </Box>
   )
 }
