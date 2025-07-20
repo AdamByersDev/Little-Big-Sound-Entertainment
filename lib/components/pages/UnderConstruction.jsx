@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function UnderConstruction() {
   return (
     <Container
-      maxWidth='xl'
+      maxWidth='auto'
       sx={{
         display: 'flex',
         justifyContent: 'center',
