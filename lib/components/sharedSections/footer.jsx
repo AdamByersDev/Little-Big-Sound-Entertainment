@@ -130,11 +130,11 @@ export default function Footer() {
           </Typography>
           <Link
             component={NextLink}
-            href='https://github.com/AdamByersDev'
+            href='https://abyers.ca'
             underline='none'
             color='textSecondary'
             height={64}
-            aria-label="Go to ABD Page"
+            aria-label="Go to ABD's Website"
           >
             <ABDLogo />
           </Link>
