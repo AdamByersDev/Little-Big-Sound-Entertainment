@@ -130,7 +130,7 @@ export default function Footer() {
           </Typography>
           <Link
             component={NextLink}
-            href='https://abyers.ca'
+            href='https://www.abyers.ca'
             underline='none'
             color='textSecondary'
             height={64}
