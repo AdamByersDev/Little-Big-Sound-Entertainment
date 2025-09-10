@@ -1,75 +1,98 @@
-'use server';
+'use client';
 
-import { Checkbox, Box, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
+import { Checkbox, Box, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography, Button, colors } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "@/lib/components/PhoneInput";
-import nodemailer from 'nodemailer';
 import FormButton from "@/lib/components/FormButton";
+import { useCallback, useEffect, useState } from "react";
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import CircularProgressWithLabel from '@mui/material/CircularProgress';
 
-async function sendEmail(formData) {
-  'use server';
+export default function ContactSection({ packages, searchParams }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [pack, setPack] = useState((
+    packages.find(
+      (pack) => (pack.id == searchParams.consult)
+    )?.name) ?? ''
+  );
+  const [info, setInfo] = useState('');
+  const [toSender, setToSender] = useState(true);
 
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const phone = formData.get('phone');
-  const pack = formData.get('package');
-  const info = formData.get('info');
-  const toSender = formData.get('to-sender');
+  const [pending, setPending] = useState(false);
+  const defaultStatus = { type: '', message: '' }
+  const [status, setStatus] = useState(defaultStatus);
 
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.purelymail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+  const sendEmail = useCallback(async (e) => {
+    e.preventDefault();
+    // Validate that name and email are provided
+    if (!name.trim() || !email.trim()) {
+      setStatus({ type: 'error', message: 'Both name and email are required.' });
+      return;
     }
+
+    // Validate email validity
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email.trim())) {
+      setStatus({ type: 'error', message: 'The provided email is invalid.' });
+      return;
+    }
+
+    // Set status to pending
+    setPending(true);
+    setStatus({ type: 'pending', message: 'Sending your email.'});
+    
+    // Abort after 20s
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 20000);
+    
+    try {
+      // Send post request with data
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          pack: pack.trim(),
+          info: info.trim(),
+          'to-sender': toSender,
+        }),
+        signal: ctrl.signal
+      });
+
+      let data = null;
+      try { data = await response.json(); } catch {}
+
+      // Check if response was an error
+      if (!response.ok || data?.ok === false) {
+        const message = data?.error || `Failed to send message. (${response.status})`;
+        throw new Error(message);
+      }
+
+      setStatus({type: 'success', message: 'Thanks! Your message was sent!'})
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error?.name === 'AbortError'
+          ? 'Timed out. Please try again'
+          : (error?.message || 'Failed to send message. Please try again later.')
+      });
+    } finally {
+      clearTimeout(t);
+      setPending(false);
+    }
+
   });
 
-  const mailBody = `
-    <h1>Contact Form Submission</h1>
-    <h2>Sent by ${name}</h2>
-    <p>
-      Supplied contact info:<br />
-      <ul>
-        <li>Email: <a href='mailto:${email}'>${email}</a></li>
-        <li>Phone: ${phone? `<a href='tel:${phone}'>${phone}</a>` : 'Not provided'}</li>
-      </ul>
-    </p>
-    <p>Chosen package: ${pack}</p>
-    ${info && (`
-      <p>Additional info:<br />
-      ${info}</p>
-    `)}
-  `;
+  useEffect(() => {
+    console.log(status);
+  }, [status.type])
 
-  const adminMail = {
-    from: `"No Reply" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_TO,
-    replyTo: email,
-    subject: `${name} - Contact Form`,
-    html: mailBody
-  };
-
-  await transporter.sendMail(adminMail);
-
-  if (toSender == 'on') {
-    const userMail = {
-      from: `"No Reply" <${process.env.EMAIL_USER}>`,
-      to: email,
-      replyTo: 'info@littlebigsoundentertainment.ca',
-      subject: `Contact Form Submission - Little Big Sound Entertainment`,
-      html: mailBody
-    };
-
-    await transporter.sendMail(userMail);
-  }
-
-
-  console.log(`${name}, ${email}, ${phone}, ${pack}, ${info}, ${toSender}`);
-}
-
-export default async function ContactSection({ packages, searchParams }) {
   return (
     <Box
       component='section'
@@ -77,109 +100,216 @@ export default async function ContactSection({ packages, searchParams }) {
       sx={{
         backgroundColor: 'grey.900',
         position: 'relative',
-        paddingX: 2
+        paddingX: 2,
+        paddingBottom: 4
       }}
     >
-      <Grid
-        container
-        component={Form}
-        action={sendEmail}
-        spacing={4}
-        padding={4}
+      <Box
         maxWidth='lg'
         sx={{
           marginX: 'auto',
-          paddingY: 4,
+          paddingTop: 4,
           paddingX: { xs: 0, sm: 4 }
         }}
       >
-        <Grid size={12} zIndex={1}>
-          <Typography variant="h4" component='h2'>
-            Contact Us
-          </Typography>
-        </Grid>
-        <Grid size={{xs: 12, md: 6}}>
-          <Stack spacing={4}>
-            <TextField
-              required
-              name="name"
-              label="Name"
-              variant="outlined"
-            />
-            <TextField
-              required
-              name="email"
-              label="Email"
-              variant="outlined"
-            />
-            <PhoneInput />
-            <FormControl>
-              <InputLabel id="package-label">Package</InputLabel>
-              <Select
-                labelId="package-label"
-                name='package'
-                label='Package'
-                defaultValue={
-                  (
-                    packages.find(
-                      (pack) => (pack.id == searchParams.consult)
-                    )?.name
-                  ) ?? ''
-                }
-                variant='outlined'
-              >
-                <MenuItem value=''>
-                  <em>Other</em>
-                </MenuItem>
-                {packages.map(((pack, index) => (
-                  <MenuItem
-                    key={index} value={pack.name}
-                  >
-                    {pack.name}
+        <Typography variant="h4" component='h2'>
+          Contact Us
+        </Typography>
+      </Box>
+      <Box
+        maxWidth='lg'
+        sx={{
+          marginX: 'auto',
+          paddingTop: 4,
+          paddingX: { xs: 0, sm: 4 },
+          position: 'relative'
+        }}
+      >
+        <Grid
+          inert={status.type != ''}
+          aria-hidden={status.type != ''}
+          container
+          component={Form}
+          onSubmit={sendEmail}
+          spacing={4}
+          sx={{
+            visibility: status.type != '' && 'hidden'
+          }}
+        >
+          <Grid size={{xs: 12, md: 6}}>
+            <Stack spacing={4}>
+              <TextField
+                required
+                name="name"
+                label="Name"
+                variant="outlined"
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+              <TextField
+                required
+                name="email"
+                label="Email"
+                variant="outlined"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              <PhoneInput
+                value={phone}
+                onChange={(event) => {
+                  setPhone(event.target.value);
+                }}
+              />
+              <FormControl>
+                <InputLabel id="package-label">Package</InputLabel>
+                <Select
+                  labelId="package-label"
+                  name='package'
+                  label='Package'
+                  variant='outlined'
+                  value={pack}
+                  onChange={(event) => {
+                    setPack(event.target.value);
+                  }}
+                >
+                  <MenuItem value=''>
+                    <em>Other</em>
                   </MenuItem>
-                )))}
-              </Select>
-            </FormControl>
-          </Stack>
+                  {packages.map(((pack, index) => (
+                    <MenuItem
+                      key={index} value={pack.name}
+                    >
+                      {pack.name}
+                    </MenuItem>
+                  )))}
+                </Select>
+              </FormControl>
+            </Stack>
+          </Grid>
+          <Grid size={{xs: 12, md: 6}}>
+            <TextField
+              required
+              name='info'
+              label='Info'
+              variant='outlined'
+              value={info}
+              onChange={(event) => {
+                setInfo(event.target.value);
+              }}
+              multiline
+              fullWidth
+              rows={6}
+              sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+              slotProps={{
+                input: {
+                  sx: {
+                    height: '100%',
+                    alignItems: 'stretch',
+                    textarea: {
+                      height: '100% !important',
+                      boxSizing: 'border-box',
+                      overflow: 'auto',
+                    },
+                  },  
+                }
+              }}
+            />
+          </Grid>
+          <Grid size={{xs: 12, sm: 6}}>
+            <FormControlLabel control={
+              <Checkbox
+                name="to-sender"
+                checked={toSender}
+                onChange={(event) => {setToSender(event.target.checked)}}
+              />
+            } label='Send a copy to yourself' />
+          </Grid>
+          <Grid size={{xs: 12, sm: 6}}>
+            <FormButton
+              variant="contained"
+              fullWidth
+              type='submit'
+            >
+              Send your email
+            </FormButton>
+          </Grid>
         </Grid>
-        <Grid size={{xs: 12, md: 6}}>
-          <TextField
-            required
-            name='info'
-            label='Info'
-            variant='outlined'
-            multiline
-            fullWidth
-            rows={6}
-            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            slotProps={{
-              input: {
-                sx: {
-                  height: '100%',
-                  alignItems: 'stretch',
-                  textarea: {
-                    height: '100% !important',
-                    boxSizing: 'border-box',
-                    overflow: 'auto',
-                  },
-                },  
-              }
+        {(status.type) && (
+          <Stack
+            sx={{
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              zIndex: 1,
+              backgroundColor: 'background.paper',
+              paddingX: { xs: 0, sm: 4 },
+              paddingY: { xs: 0, sm: 4 },
+              borderRadius: 4,
+              marginTop: 2,
+              marginX: { sm: 4},
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
-          />
-        </Grid>
-        <Grid size={{xs: 12, sm: 6}}>
-          <FormControlLabel control={<Checkbox defaultChecked name="to-sender" />} label='Send a copy to yourself' />
-        </Grid>
-        <Grid size={{xs: 12, sm: 6}}>
-          <FormButton
-            variant="contained"
-            fullWidth
-            type='submit'
+            spacing={2}
+            aria-live='polite'
           >
-            Send your email
-          </FormButton>
-        </Grid>
-      </Grid>
+            <Box
+              fontSize={'48px'}
+              lineHeight={'0'}
+            >
+              <CircularProgressWithLabel 
+                disableShrink
+                color={{
+                  "pending": 'secondary',
+                  "error": 'error',
+                  "sending": 'primary'
+                }[status.type]}
+                
+                size={'40px'}
+                sx={{
+                  marginBottom: '4px',
+                  transitionTimingFunction: 'ease-in-out',
+                  transitionDuration: '0.5s'
+                }}
+                thickness={4}
+              />
+            </Box>
+            <Typography
+              variant='h4'
+              component='h3'
+            >
+              {
+                {
+                  'pending': 'Sending...',
+                  'error': 'Error!',
+                  'success': 'Success!'
+                }[status.type]
+              }
+            </Typography>
+            <Typography
+              variant='subtitle1'
+              component='p'
+            >
+              {status.message}
+            </Typography>
+            {status.type === 'error' && 
+              <Button
+                variant="contained"
+                onClick={() => {setStatus(defaultStatus)}}
+              >
+                Okay
+              </Button>
+            }
+          </Stack>
+        )}
+      </Box>
+
     </Box>
   )
 }
