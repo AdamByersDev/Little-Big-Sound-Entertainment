@@ -1,13 +1,12 @@
 'use client';
 
-import { Checkbox, Box, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography, Button, colors } from "@mui/material";
+import { Checkbox, Box, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography, Button, CircularProgress } from "@mui/material";
 import Form from 'next/form';
 import PhoneInput from "@/lib/components/PhoneInput";
 import FormButton from "@/lib/components/FormButton";
 import { useCallback, useEffect, useState } from "react";
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
-import CircularProgressWithLabel from '@mui/material/CircularProgress';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ContactSection({ packages, searchParams }) {
   const [name, setName] = useState('');
@@ -24,6 +23,17 @@ export default function ContactSection({ packages, searchParams }) {
   const [pending, setPending] = useState(false);
   const defaultStatus = { type: '', message: '' }
   const [status, setStatus] = useState(defaultStatus);
+
+  const defaultSpinnerProgress = 60;
+  const [spinnerProgress, setSpinnerProgress] = useState(defaultSpinnerProgress);
+
+  useEffect(() => {
+    if (status.type === 'pending') {
+      setSpinnerProgress(defaultSpinnerProgress);
+    } else {
+      setSpinnerProgress(100);
+    }
+  }, [status.type])
 
   const sendEmail = useCallback(async (e) => {
     e.preventDefault();
@@ -262,23 +272,57 @@ export default function ContactSection({ packages, searchParams }) {
             <Box
               fontSize={'48px'}
               lineHeight={'0'}
+              sx={{
+                position: 'relative',
+              }}
             >
-              <CircularProgressWithLabel 
-                disableShrink
-                color={{
-                  "pending": 'secondary',
-                  "error": 'error',
-                  "sending": 'primary'
-                }[status.type]}
-                
-                size={'40px'}
+              <CircularProgress 
+                color={
+                  {
+                    'pending':'secondary',
+                    'error': 'error',
+                    'success': 'primary'
+                  }[status.type]
+                }
+                variant='determinate'
+                value={spinnerProgress}
+                size={'48px'}
                 sx={{
-                  marginBottom: '4px',
                   transitionTimingFunction: 'ease-in-out',
-                  transitionDuration: '0.5s'
+                  transitionDuration: '0.5s',
+                  animation: "mui-circular-rotate 1.4s linear infinite",
+                  "@keyframes mui-circular-rotate": {
+                    "0%":   { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" }
+                  }
                 }}
                 thickness={4}
               />
+              <Box
+                sx={{
+                  fontSize: '40px',
+                  lineHeight: '0',
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'opacity ease-in-out, rotate ease-out',
+                  transitionDuration: '0.5s',
+                  opacity: status.type === 'pending'? 0 : 100,
+                  rotate: status.type === 'pending'? '-128deg' : '0deg'
+                }}
+              >
+                {
+                  {
+                    'error': <CloseIcon fontSize='inherit' color="error" />,
+                    'success': <CheckIcon fontSize='inherit' color="primary" />
+                  }[status.type]
+                }
+              </Box>
             </Box>
             <Typography
               variant='h4'
@@ -301,7 +345,10 @@ export default function ContactSection({ packages, searchParams }) {
             {status.type === 'error' && 
               <Button
                 variant="contained"
-                onClick={() => {setStatus(defaultStatus)}}
+                onClick={() => {
+                  setStatus(defaultStatus);
+                  setSpinnerProgress(defaultSpinnerProgress);
+                }}
               >
                 Okay
               </Button>
