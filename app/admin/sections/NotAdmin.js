@@ -36,7 +36,7 @@ export default function NotAdmin() {
           />
           <Typography variant="h3" component='h1'>Oops!</Typography>
           <Typography variant="body1">
-            Looks like you aren't an admin! If this is an error, please contact a known admin.
+            Looks like you aren&apos;t an admin! If this is an error, please contact a known admin.
           </Typography>
           <Box sx={{
             gap: '4px',
