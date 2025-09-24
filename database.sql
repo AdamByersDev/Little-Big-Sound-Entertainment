@@ -70,13 +70,13 @@ CREATE SQL SECURITY DEFINER VIEW availablefeatures AS
   GROUP BY f.id
   ORDER BY COUNT(pf.featureid) DESC, f.name ASC;
 
-INSERT INTO packages (name, summary, chosenorder, prefered, addedby, addip, musictime, id) VALUES
+INSERT INTO packages (name, summary, chosenorder, prefered, addip, musictime, id) VALUES
 ('Basic Party Package', "Keep it simple and fun with up to 4 hours of music mixed live by a professional DJ. This package includes a solid sound system (two speakers and a DJ controller), a basic lighting setup with two LED lights, and access to our pre-approved music library tailored to your vibe. We’ll take care of setup and teardown, so you can just enjoy the music and the moment.", 3, 0, '127.0.0.1', 4, 1),
 ('Premium Event Package', "From cocktails to the last dance, the Premium Event Package has your whole night covered with up to 6 hours of curated music. You'll get a custom playlist based on your favorite genres, a pro-level sound system, and ambient lighting with your choice of LED or moving head lights. A microphone is included for announcements or speeches, and we’ll meet with you ahead of time to make sure the music fits your event perfectly. Setup and teardown? Handled.", 1, 1, '127.0.0.1', 6, 2),
 ('All-Inclusive Wedding Package', "From the moment guests arrive to the final dance of the night, this package brings the full experience with up to 8 hours of music—covering the ceremony, cocktail hour, and reception. You’ll get a pro sound system, wireless mic for vows and speeches, and a custom playlist built around the couple’s tastes. We include dance floor lighting with both LED and moving lights, and up to two DJs to keep the energy flowing seamlessly across every style and moment. We also coordinate with your planner, handle setup and teardown, and include a pre-event timeline consult to make sure the music hits just right at every key point. Travel within 30 miles is on us.", 2, 2, '127.0.0.1', 8, 3),
 ('Themed Party Package', "Designed for high-energy events, this package includes up to 6 hours of music tailored to your crowd’s vibe. We provide a professional sound system (two speakers and a DJ controller), a microphone for announcements or hype moments, and lighting options with LED or moving head lights to elevate the atmosphere. A pre-event consult helps us craft the perfect playlist based on your preferred genres. As always, we take care of all setup and teardown—so you can focus on the fun.", 4, 0, '127.0.0.1', 8, 4);
 
-INSERT INTO features (id, name, info, addedby, addip) VALUES
+INSERT INTO features (id, name, info, addip) VALUES
 (
   1,
   'Sound System',
@@ -124,7 +124,7 @@ INSERT INTO features (id, name, info, addedby, addip) VALUES
   '127.0.0.1'
 );
 
-INSERT INTO packagefeatures (packageid, featureid, addedby, addip) VALUES
+INSERT INTO packagefeatures (packageid, featureid, addip) VALUES
 (
   1,
   1,
