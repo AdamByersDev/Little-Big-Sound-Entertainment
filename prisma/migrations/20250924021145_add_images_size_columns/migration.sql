@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `images` ADD COLUMN `imageHeight` INTEGER NOT NULL DEFAULT 0,
+    ADD COLUMN `imageWidth` INTEGER NOT NULL DEFAULT 0;

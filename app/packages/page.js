@@ -5,6 +5,7 @@ import PackagesSection from "./sections/PackagesSection";
 import { getFullPackageData } from "@/lib/backend/api";
 
 export const revalidate = 120;
+
 export const metadata = {
   title: "Packages",
 };

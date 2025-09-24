@@ -141,6 +141,8 @@ model images {
   fileName    String
   imageName   String
   uploader    String
+  imageWidth  Int       @default(0)
+  imageHeight Int       @default(0)
 
   user        User      @relation(fields: [uploader], references: [id])
 
