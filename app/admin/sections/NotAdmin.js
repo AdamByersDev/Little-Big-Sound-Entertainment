@@ -47,6 +47,7 @@ export default function NotAdmin() {
           }}>
             <form
               action={async () => {
+                "use server"
                 await signOut({ redirectTo: "/" })
               }}
             >

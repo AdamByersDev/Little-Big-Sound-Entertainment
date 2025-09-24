@@ -239,6 +239,7 @@ DROP USER IF EXISTS 'publiclbse'@'localhost';
 CREATE USER 'publiclbse'@'localhost' IDENTIFIED BY 'publicPassword8675309';
 GRANT SELECT ON lbse.availablepackages TO 'publiclbse'@'localhost';
 GRANT SELECT ON lbse.availablefeatures TO 'publiclbse'@'localhost';
+GRANT SELECT ON lbse.admin TO 'publiclbse'@'localhost';
 
 DROP USER IF EXISTS 'adminlbse'@'localhost';
 CREATE USER 'adminlbse'@'localhost' IDENTIFIED BY '7hWddpXbvg0aLZsh1wGA';
