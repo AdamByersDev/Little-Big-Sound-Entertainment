@@ -8,6 +8,8 @@ export const metadata = {
   title: "Admin",
 };
 
+export const revalidate = 120;
+
 export default async function Admin() {
   const session = await auth();
 
