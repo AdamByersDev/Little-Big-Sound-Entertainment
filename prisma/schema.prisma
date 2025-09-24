@@ -58,6 +58,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   admins        admin[]
+  images        images[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  
@@ -126,11 +127,24 @@ model Authenticator {
 }
 
 model admin {
-  id              Int               @id @default(autoincrement())
-  userId          String            @unique
-  isActive        Boolean           @default(false)
+  id        Int       @id @default(autoincrement())
+  userId    String    @unique
+  isActive  Boolean   @default(false)
 
-  user         User     @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
+}
+
+model images {
+  id          Int       @id @default(autoincrement())
+  fileName    String
+  imageName   String
+  uploader    String
+  imageWidth  Int       @default(0)
+  imageHeight Int       @default(0)
+
+  user        User      @relation(fields: [uploader], references: [id])
+
+  @@index([uploader])
 }

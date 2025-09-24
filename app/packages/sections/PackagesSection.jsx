@@ -59,11 +59,11 @@ export default function PackagesSection({ packages, features }) {
           paddingX: { xs: 0, sm: 4 }
         }}
       >
-        {packages.map(((pack, index) => (
+        {packages.map((pack, index) => (
           <Grid key={index} size={getCardSizes(packages.length, index)} zIndex={1}>
             <PackageSummaryCard id={pack.id} name={pack.name} time={pack.musictime} prefered={pack.prefered} packageFeatures={pack.features} features={features}/>
           </Grid>
-        )))}
+        ))}
       </Grid>
       <Box
         sx={{
