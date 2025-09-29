@@ -14,6 +14,8 @@ export default function GalleryImage({ src, alt, imageWidth, imageHeight, ...pro
           transition: 'transform 0.2s ease, box-shadow 0.2s ease',
           borderRadius: 4,
           overflow: 'hidden',
+          width: '100%',
+          aspectRatio: `${imageWidth}/${imageHeight}`,
           backgroundColor: 'background.paper',
           '&:hover': {
             transform: 'translateY(-4px)',

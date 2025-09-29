@@ -19,6 +19,7 @@
 
 # production
 /build
+/public/gallery
 
 # misc
 .DS_Store
