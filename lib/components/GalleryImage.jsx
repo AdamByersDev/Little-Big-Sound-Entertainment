@@ -61,6 +61,7 @@ export default function GalleryImage({ src, alt, imageWidth, imageHeight, ...pro
             }}
           >
             <Image
+              unoptimized
               src={src}
               alt={alt}
               fill
