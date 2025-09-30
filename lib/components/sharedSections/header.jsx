@@ -106,7 +106,7 @@ export default function Header({active, home}) {
               }}
             >
               <Image
-                src='logo-text-only-left.svg'
+                src='/logo-text-only-left.svg'
                 width={0}
                 height={32}
                 alt="Little Big Sound Entertainment"
